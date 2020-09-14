@@ -2,6 +2,7 @@ import React from "react";
 import '../registrer/register.scss';
 import TextField from '@material-ui/core/TextField';
 import user_service from '../../services/userService';
+import Snackbar from '../snackbar/snackbar';
 
 export default class Login extends React.Component {
 
@@ -20,14 +21,28 @@ export default class Login extends React.Component {
                 errorEmail: '',
                 errorPassword: '',
                 errorConfirmPassword: "",
-            }
+            },
+            flag:0,
+            snackbarStatus:false,
+            text:""
         }
 
     }
 
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        this.setState({
+            snackbarStatus:false,
+            text:""
+        })
+      };
+
     onChangeFirstName = e => {
         this.setState({
-            firstName: e.target.value
+            firstName: e.target.value,
+            flag:1
         }, () => { console.log(this.firstName); })
 
         let nameValidation = /^[A-Z]{1}[a-z]{2}[a-z]*$/;
@@ -39,7 +54,8 @@ export default class Login extends React.Component {
     }
     onChangeLastName = e => {
         this.setState({
-            lastName: e.target.value
+            lastName: e.target.value,
+            flag:1
         }, () => { console.log(this.lastName); })
 
         let nameValidation = /^[A-Z]{1}[a-z]{2}[a-z]*$/;
@@ -51,7 +67,8 @@ export default class Login extends React.Component {
     }
     onChangeEmail = e => {
         this.setState({
-            email: e.target.value
+            email: e.target.value,
+            flag:1
         }, () => { console.log(this.email); })
 
         let emailValidation = /^([a-zA-Z0-9]*[.]*[a-zA-Z0-9]*@[a-zA-Z0-9]*.{1}[a-zA-Z0-9]*[.]*[a-zA-Z0-9]*)$/;
@@ -63,7 +80,8 @@ export default class Login extends React.Component {
     }
     onChangePassword = e => {
         this.setState({
-            password: e.target.value
+            password: e.target.value,
+            flag:1
         }, () => { console.log(this.password); })
 
         let passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/;
@@ -76,7 +94,8 @@ export default class Login extends React.Component {
     }
     onChangeConfirmPassword = e => {
         this.setState({
-            confirmPassword: e.target.value
+            confirmPassword: e.target.value,
+            flag:1
         }, () => { console.log(this.confirmPassword); })
 
         let passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/;
@@ -95,7 +114,8 @@ export default class Login extends React.Component {
         console.log("password",this.state.password);
         console.log("confirm-password",this.state.confirmPassword);
 
-        if(this.state.error.errorConfirmPassword ==="" 
+        if(this.state.flag === 1
+            && this.state.error.errorConfirmPassword ==="" 
             && this.state.error.errorEmail ===""
             && this.state.error.errorFirstName ===""
             && this.state.error.errorLastName ===""
@@ -111,17 +131,32 @@ export default class Login extends React.Component {
             };
                 user_service.register(userData).then((data) =>{
                     console.log('data after register',data);
+                    this.setState({
+                        snackbarStatus:true,
+                        text:"Succesfull"
+                    })
+
+                // return <Snackbar text="hello"></Snackbar>
               }).catch(error=>{
                     console.log('Error',error);
-              })
+                    // return <Snackbar text="hello"></Snackbar>
+            })
             }else{
-                alert("Password not Matching");
+                // alert("Password not Matching");  
+                // return <Snackbar text="hello"></Snackbar>
             }
         }
         else{
+            this.setState({
+                snackbarStatus:true,
+                text:"Something went wrong"
+            })
+            // this.handleClose();
             
-            alert("something is missing");
         }
+
+
+
     }
 
     render() {
@@ -209,8 +244,12 @@ export default class Login extends React.Component {
                                         className="next">
                                         Next
                                     </button>
+                                    
                                 </div>
                             </form>
+                            <Snackbar text={this.state.text} 
+                            openStatus={this.state.snackbarStatus}
+                            closeStatus={this.handleClose}></Snackbar>
                         </div>
                         <div className="reg-logo">
                             <img src="https://ssl.gstatic.com/accounts/signup/glif/account.svg" alt="" />

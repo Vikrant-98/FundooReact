@@ -5,6 +5,7 @@ import Register from './component/registrer/register';
 import Dashboard from './component/dashboard/dashboard';
 import Error from './component/Error/error';
 import {Route,Switch} from 'react-router-dom';
+import Snackbar from './component/snackbar/snackbar'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/dashboard" component={Dashboard}/>
+        <Route exact path="/snack" component={Snackbar}/>
         <Route component={Error}/>
       </Switch>
     </div>
