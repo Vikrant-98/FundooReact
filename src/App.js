@@ -6,9 +6,13 @@ import Dashboard from './component/dashboard/dashboard';
 import Error from './component/Error/error';
 import {Route,Switch} from 'react-router-dom';
 import Snackbar from './component/snackbar/snackbar'
+import {Provider} from 'react-redux';
+import store from './services/redux/store/store'
+
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <Switch>
         <Route exact path="/" component={Login}/>
@@ -18,6 +22,7 @@ function App() {
         <Route component={Error}/>
       </Switch>
     </div>
+    </Provider>
   );
 }
 
