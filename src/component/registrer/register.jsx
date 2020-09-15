@@ -135,8 +135,6 @@ export default class Login extends React.Component {
                         snackbarStatus:true,
                         text:"Succesfull"
                     })
-
-                // return <Snackbar text="hello"></Snackbar>
               }).catch(error=>{
                     console.log('Error',error);
                     // return <Snackbar text="hello"></Snackbar>
@@ -244,7 +242,6 @@ export default class Login extends React.Component {
                                         className="next">
                                         Next
                                     </button>
-                                    
                                 </div>
                             </form>
                             <Snackbar text={this.state.text} 
