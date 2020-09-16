@@ -26,6 +26,10 @@ class UserService{
         return this.axios_service.post(url,data,false);
     }
 
+    getAllNotes(){
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/getNotesList';
+        return this.axios_service.Get(url)
+    }
 
 
 

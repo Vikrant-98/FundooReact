@@ -1,0 +1,20 @@
+.note-icons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.icon-size{
+    width: 18px !important;
+}
+.note-icons-hover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+}
+.note-icons-hover:hover {
+    background-color: rgb(211, 206, 206);
+}

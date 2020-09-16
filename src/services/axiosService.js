@@ -11,6 +11,10 @@ axios_service.prototype.post =  function(url,data,isHeaderReq=false){
         },
       });
 }
-axios_service.prototype.Get =  function(url,data,isHeaderReq=false,header){
-    return axios.get(url,data,isHeaderReq && header);
+axios_service.prototype.Get =  function(url){
+    return axios.get(url,{
+        headers: {
+          Authorization: localStorage.getItem('token')
+        },
+      });
 }

@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import RoomIcon from '@material-ui/icons/Room';
 import user_service from '../../services/userService';
 import '../createnote/createnote.scss';
+import Icons from '../icons/icons';
 
 export default class CreateNote extends React.Component{
     constructor(){
@@ -95,6 +96,9 @@ export default class CreateNote extends React.Component{
                             />
                         {/* <input className="text-input" placeholder="Take a note.." type="text"/> */}
                         </div>
+                        <div className="position">
+                            <Icons/>
+                        </div>
                         <div 
                             className="close"
                             >
@@ -108,69 +112,3 @@ export default class CreateNote extends React.Component{
             )
           }    
 }
-// function Createnote(){
-
-//     const [open, setOpen] = React.useState(true);
-
-//   const handleNoteOpen = () => {
-//     setOpen(false);
-//   };
-
-//   const handleNoteclose = () => {
-//     setOpen(true);
-//   };
-
-//     return(
-//         <div className="note">
-//             {open ? (
-//          <div 
-//          className="take-note"
-//          onClick={handleNoteOpen}>
-//          <span>
-//          Take a note...
-//          </span>
-//          <div className="take-note-icon">
-//          <div className="icon">
-//              <CheckBoxOutlinedIcon/>
-//          </div>
-//          <div className="icon">
-//              <BrushOutlinedIcon/>
-//          </div>
-//          <div className="icon">
-//              <ImageOutlinedIcon/>
-//          </div>
-//          </div>
-//      </div>
-//       ) : (
-//         <div className="take-note take-note-expand">
-//                 <div className="take-note-input">
-//                 <div>
-//                     {/* <input className="title-input" placeholder="Title" type="text-area"/> */}
-//                     {/* <textarea className="title-input" placeholder="Title"></textarea> */}
-//                     <TextField 
-//                         className="title-input"
-//                         placeholder="Title"
-//                         multiline
-//                     />
-//                     <RoomIcon/>
-//                 </div>
-//                 <TextField 
-//                         className="text-input"
-//                         placeholder="Take a note.."
-//                         multiline
-//                         inputProps={{ 'aria-label': 'naked' }}
-//                     />
-//                 {/* <input className="text-input" placeholder="Take a note.." type="text"/> */}
-//                 </div>
-//                 <div 
-//                     className="close"
-//                     >
-//                     <div onClick={handleNoteclose}>
-//                         close
-//                     </div>
-//                 </div>
-//             </div>
-//       )}
-//     </div>
-//     )
-// }
