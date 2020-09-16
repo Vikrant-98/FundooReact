@@ -10,8 +10,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
+import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
@@ -20,6 +23,9 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import CreateNote from '../createnote/createnote';
+import DisplayNote from '../displaynote/displaynote'
+import '../toolbar/toolbar.scss'
 
 const drawerWidth = 240;
 
@@ -62,6 +68,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  listIcon:{
+    display: 'flex',
+    flexDirection: 'column'
   },
   inputRoot: {
     color: 'inherit',
@@ -141,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: 'white',
-    color:'black',
+    color:'#646868',
     padding: theme.spacing(0, 1),
     paddingLeft:'16px',
     // necessary for content to be below app bar
@@ -159,6 +169,10 @@ export default function MiniDrawer() {
 
   const handleDrawerOpen = () => {
     setOpen(!open);
+  };
+
+  const handleDrawerClose= () => {
+    setOpen(false);
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -281,25 +295,40 @@ export default function MiniDrawer() {
         <div className={classes.toolbar}>
 
         </div>
-        <List>
-          {['EmojiObjects', 'Archive', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+        <List
+          onMouseEnter={handleDrawerOpen}
+          onMouseLeave={handleDrawerClose}>
+          <ListItem button key={'Notes'} className="notes">
+            <ListItemIcon>
+            <EmojiObjectsOutlinedIcon /> </ListItemIcon>
+            <ListItemText primary={'Notes'}/>
+          </ListItem>
+          <ListItem button key={'Remainders'} className="remainder">
+            <ListItemIcon><NotificationsNoneOutlinedIcon/></ListItemIcon>
+            <ListItemText primary={'Remainders'}/>
+          </ListItem>
+          <ListItem button key={'Editlabels'} className="editlabels">
+            <ListItemIcon><EditOutlinedIcon/></ListItemIcon>
+            <ListItemText primary={'Edit labels'}/>
+          </ListItem>
+          <ListItem button key={'Archive'} className="archive">
+            <ListItemIcon><ArchiveOutlinedIcon/></ListItemIcon>
+            <ListItemText primary={'Archive'}/>
+          </ListItem>
+          <ListItem button key={'Trash'} className="trash">
+            <ListItemIcon><DeleteOutlineOutlinedIcon/></ListItemIcon>
+            <ListItemText primary={'Trash'}/>
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <div>
+          <CreateNote/>
+          <div className="note-display-div">
+          <DisplayNote/>
+          </div>
+        </div>
       </main>
     </div>
   );

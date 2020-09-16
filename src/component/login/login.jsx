@@ -2,6 +2,7 @@ import React from "react";
 import "./login.scss";
 import TextField from '@material-ui/core/TextField';
 import user_service from '../../services/userService';
+import { Redirect ,Link } from 'react-router-dom';
 
 export default class Login extends React.Component {
     
@@ -11,9 +12,12 @@ export default class Login extends React.Component {
     {
         super(props)
         
+        let loggin =false;
+
         this.state={
             email:'',
-            password:''
+            password:'',
+            loggin
         }
     }
     
@@ -36,11 +40,15 @@ export default class Login extends React.Component {
           };
           user_service.login(userData).then((data) =>{
                 console.log('data after login',data);
+                localStorage.setItem('token', data.data.id);
+                this.setState({
+                    loggin:true
+                })
+                return <Redirect to="/dashboard"></Redirect>
           }).catch(error=>{
 
           })
       }
-
 
     render() {
         const{email,password} = this.state;
