@@ -18,6 +18,7 @@ export default class TrashIcons extends React.Component{
           };
           user_service.deleteNote(Data).then((data) =>{
             console.log('Restore Note',data);
+            window.location.reload(false);
           }).catch(error=>{
             console.log('Restore error',error);
         })
@@ -30,6 +31,7 @@ export default class TrashIcons extends React.Component{
           };
           user_service.deleteNotePermanent(Data).then((data) =>{
             console.log('Delete Note',data);
+            window.location.reload(false);
           }).catch(error=>{
             console.log('Delete error',error);
         })

@@ -12,39 +12,40 @@ import pin from '../../asserts/pinn.svg'
 export default class CreateNote extends React.Component{
     constructor(){
         super();
-        const classes = useStyles();
+        // const classes = useStyles();
         this.state={
             open: true,
             title:"",
-            note:""
+            note:"",
+            responce:false
         }
         
     } 
-    useStyles = makeStyles(() => ({
+    // useStyles = makeStyles(() => ({
 
-        textField:{
-            "& .MuiInput-underline:before": {
-                left: '0',
-                right: '0',
-                bottom: '0',
-                content: "",
-                position: 'absolute',
-                transition: 'none',
-                borderBottom: 'none',
-                pointerEvents: 'none',
-            },
-            "& .MuiInput-underline:after": {
-                left: '0',
-                right: '0',
-                bottom: '0',
-                content: "",
-                position: 'absolute',
-                transition: 'none',
-                borderBottom: 'none',
-                pointerEvents: 'none',
-            }
-        }   
-    }))
+    //     textField:{
+    //         "& .MuiInput-underline:before": {
+    //             left: '0',
+    //             right: '0',
+    //             bottom: '0',
+    //             content: "",
+    //             position: 'absolute',
+    //             transition: 'none',
+    //             borderBottom: 'none',
+    //             pointerEvents: 'none',
+    //         },
+    //         "& .MuiInput-underline:after": {
+    //             left: '0',
+    //             right: '0',
+    //             bottom: '0',
+    //             content: "",
+    //             position: 'absolute',
+    //             transition: 'none',
+    //             borderBottom: 'none',
+    //             pointerEvents: 'none',
+    //         }
+    //     }   
+    // }))
     handleNoteOpen = () => {
         this.setState({
             open:false
@@ -56,13 +57,15 @@ export default class CreateNote extends React.Component{
             title: this.state.title,
             description: this.state.note
           };
+        
         user_service.addNote(userData).then((data) =>{
             console.log('data after added note',data);
-            
+            window.location.reload(false);
             this.setState({
                 open:true,
                 title:"",
-                note:""
+                note:"",
+                reponce:true
             },() => {console.log(this.state);});
       }).catch(error=>{
             this.setState({
@@ -124,7 +127,7 @@ export default class CreateNote extends React.Component{
                             />
                         </div>
                         <div className="position">
-                            <Icons/>
+                            <Icons archive={false}/>
                         </div>
                         <div 
                             className="close"

@@ -18,11 +18,9 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import Popover from '../toolbar/poppover';
 import Note from '../note/notebox';
 import Trash from '../trash/trash';
 import '../toolbar/toolbar.scss';
@@ -53,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     borderRadius: '8px',
     backgroundColor: '#F1F3F4',
-    '&:hover': {
+    "&:hover": {
       backgroundColor: '#F1F3F4',
     },
     marginRight: theme.spacing(2),
@@ -88,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height:'100%',
     [theme.breakpoints.up('md')]:{
-      width: '57ch',
+      width: '53ch',
     },
   },
   sectionDesktop: {
@@ -150,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden',
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
+      width: theme.spacing(7) + 1,
     },
   },
   toolbar: {
@@ -173,7 +171,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#707070'
   },
   sideIcon:{
-    borderRadius:'20px'
+    borderRadius:'20px',
+    "&:focus": {
+      backgroundColor: '#FEEFC3'
+    }
   }
 }));
 
@@ -211,27 +212,7 @@ export default function MiniDrawer() {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
+    <AccountCircle />
   );
 
   return (
@@ -269,16 +250,7 @@ export default function MiniDrawer() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+              <Popover/>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -288,7 +260,7 @@ export default function MiniDrawer() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MoreIcon />
+              <AccountCircle />
             </IconButton>
           </div>
         </Toolbar>
@@ -313,9 +285,7 @@ export default function MiniDrawer() {
           onMouseLeave={handleDrawerClose}>
           <Link to="/dashboard" className={classes.link}>
           <ListItem button key={'Notes'}  className={classes.sideIcon}>
-            <ListItemIcon>
-            <EmojiObjectsOutlinedIcon /> 
-            </ListItemIcon>
+            <ListItemIcon><EmojiObjectsOutlinedIcon /></ListItemIcon>
             <ListItemText primary={'Notes'}/>
           </ListItem>
           </Link>

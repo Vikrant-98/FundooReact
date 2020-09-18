@@ -6,3 +6,21 @@
     border-radius: 20px;
     outline: none;
 }
+.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+.profile-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile-img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}

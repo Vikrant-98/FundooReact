@@ -34,11 +34,28 @@ export default class Note extends React.Component{
     render(){
         
         return(
-            <div className="note-position">
-            {this.state.notes.filter((element) => {
-                return element.isArchived === false && element.isDeleted === false;
-            }).reverse().map(this.note)}
+            <>
+            <div className="pin-unpin">
+                <span className="pin">
+                    Pinned
+                </span>
+                <div className="note-position">
+                    {this.state.notes.filter((element) => {
+                        return element.isArchived === false && element.isDeleted === false && element.isPined === false;
+                    }).reverse().map(this.note)}
+                </div>
             </div>
+            <div className="pin-unpin">
+                <span className="pin">
+                    Unpinned
+                </span>
+                <div className="note-position">
+                {this.state.notes.filter((element) => {
+                        return element.isArchived === false && element.isDeleted === false && element.isPined === true;
+                    }).reverse().map(this.note)}
+                </div>
+            </div>
+            </>
         )
         
     }

@@ -60,7 +60,11 @@ class UserService{
         let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/getArchiveNotesList';
         return this.axios_service.Get(url);
     }
-    
+    pinNote(data) 
+    {
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/pinUnpinNotes';
+        return this.axios_service.post(url,data);
+    }
 
 
 }
