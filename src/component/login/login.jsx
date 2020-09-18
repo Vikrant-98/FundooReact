@@ -44,10 +44,14 @@ export default class Login extends React.Component {
                 this.setState({
                     loggin:true
                 })
-                return <Redirect to="/dashboard"></Redirect>
+                this.redirectToDashboard();
           }).catch(error=>{
 
           })
+      }
+
+      redirectToDashboard(){
+        this.props.history.push("/dashboard")
       }
 
     render() {

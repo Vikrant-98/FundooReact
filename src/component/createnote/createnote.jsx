@@ -3,10 +3,11 @@ import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import BrushOutlinedIcon from '@material-ui/icons/BrushOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import TextField from '@material-ui/core/TextField';
-import RoomIcon from '@material-ui/icons/Room';
 import user_service from '../../services/userService';
 import '../createnote/createnote.scss';
 import Icons from '../icons/icons';
+import { makeStyles} from '@material-ui/core/styles';
+import pin from '../../asserts/pinn.svg'
 
 export default class CreateNote extends React.Component{
     constructor(){
@@ -19,6 +20,9 @@ export default class CreateNote extends React.Component{
         }
     } 
     
+    useStyles = makeStyles((theme) => ({
+
+    }))
     handleNoteOpen = () => {
         this.setState({
             open:false
@@ -32,13 +36,17 @@ export default class CreateNote extends React.Component{
           };
         user_service.addNote(userData).then((data) =>{
             console.log('data after added note',data);
+            
             this.setState({
                 open:true,
                 title:"",
                 note:""
-            },() => {console.log(this.state);})
+            },() => {console.log(this.state);});
       }).catch(error=>{
-            console.log("error",error)
+            this.setState({
+                open:true
+            },() => {console.log(this.state);});
+            console.log("error",error);
       })
       };
 
@@ -60,13 +68,13 @@ export default class CreateNote extends React.Component{
                  Take a note...
                  </span>
                  <div className="take-note-icon">
-                 <div className="icon">
+                 <div className="take-icon">
                      <CheckBoxOutlinedIcon/>
                  </div>
-                 <div className="icon">
+                 <div className="take-icon">
                      <BrushOutlinedIcon/>
                  </div>
-                 <div className="icon">
+                 <div className="take-icon">
                      <ImageOutlinedIcon/>
                  </div>
                  </div>
@@ -74,7 +82,7 @@ export default class CreateNote extends React.Component{
               ) : (
                 <div className="take-note take-note-expand">
                         <div className="take-note-input">
-                        <div>
+                        <div className="title-pin">
                             {/* <input className="title-input" placeholder="Title" type="text-area"/> */}
                             {/* <textarea className="title-input" placeholder="Title"></textarea> */}
                             <TextField 
@@ -84,7 +92,8 @@ export default class CreateNote extends React.Component{
                                 placeholder="Title"
                                 multiline
                             />
-                            <RoomIcon/>
+                            {/* <RoomIcon/> */}
+                            <img className="pin" src={pin} alt=""/>
                         </div>
                         <TextField 
                                 className="text-input"

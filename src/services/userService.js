@@ -13,17 +13,17 @@ class UserService{
 
     login(data){
        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/user/login';
-       return this.axios_service.post(url,data,false);
+       return this.axios_service.post(url,data);
     }
 
     register(data){
        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp';
-        return this.axios_service.post(url,data,false);
+        return this.axios_service.post(url,data);
     }
 
     addNote(data){
         let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/addNotes';
-        return this.axios_service.post(url,data,false);
+        return this.axios_service.post(url,data);
     }
 
     getAllNotes(){
@@ -31,6 +31,30 @@ class UserService{
         return this.axios_service.Get(url)
     }
 
+    deleteNote(data){
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/trashNotes';
+        return this.axios_service.post(url,data);
+    }
+
+    archiveNote(data){
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/archiveNotes';
+        return this.axios_service.post(url,data);
+    }
+    getTrashNotes() 
+    {
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/getTrashNotesList';
+        return this.axios_service.Get(url);
+    }
+    updateNote(data) 
+    {
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/updateNotes';
+        return this.axios_service.post(url,data);
+    }
+    deleteNotePermanent(data) 
+    {
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/deleteForeverNotes';
+        return this.axios_service.post(url,data);
+    }
 
 
 }

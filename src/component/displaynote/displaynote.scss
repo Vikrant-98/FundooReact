@@ -5,13 +5,16 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: flex-start;
+    overflow-wrap: anywhere;
+    text-align: left;
 }
 .note-display{
-    width: 220px;
+    width: 240px;
     min-height: 120px;
     border-radius: 8px;
     padding: 8px;
-    margin: 8px;
+    margin: 10px;
     box-shadow: 1px 2px 6px 2px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -28,16 +31,35 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: flex-start;
+    flex-flow: wrap;
      
 }
-.icon
+.icon-div
   {
     width: 100%;
+    height: 30px;
+  } 
+  .icon{
+      display: none;
+  } 
+  .title-pinn{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 220px;
+  }
+  .pinn{
+    width:25px;
+    cursor: pointer;
     display: none;
-  }  
-  .note-display:hover .icon 
+}
+  .note-display:hover .icon
   {
      display: block; 
-     color:#696b6e;
+     color:#292a2b;
   }
+  .note-display:hover .pinn
+  {
+     display: block; 
+  }
+  

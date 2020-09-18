@@ -23,9 +23,12 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import CreateNote from '../createnote/createnote';
-import DisplayNote from '../displaynote/displaynote'
-import '../toolbar/toolbar.scss'
+import Note from '../note/notebox';
+import Trash from '../trash/trash';
+import '../toolbar/toolbar.scss';
+import {ProtectedRoute} from '../../services/auth/protected';
+import {Link,Switch } from "react-router-dom";
+
 
 const drawerWidth = 240;
 
@@ -100,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -299,8 +302,11 @@ export default function MiniDrawer() {
           onMouseEnter={handleDrawerOpen}
           onMouseLeave={handleDrawerClose}>
           <ListItem button key={'Notes'} className="notes">
+          <Link to="/dashboard">
             <ListItemIcon>
-            <EmojiObjectsOutlinedIcon /> </ListItemIcon>
+            <EmojiObjectsOutlinedIcon /> 
+            </ListItemIcon>
+            </Link>
             <ListItemText primary={'Notes'}/>
           </ListItem>
           <ListItem button key={'Remainders'} className="remainder">
@@ -316,7 +322,9 @@ export default function MiniDrawer() {
             <ListItemText primary={'Archive'}/>
           </ListItem>
           <ListItem button key={'Trash'} className="trash">
+            <Link to="/dashboard/trash">
             <ListItemIcon><DeleteOutlineOutlinedIcon/></ListItemIcon>
+            </Link>
             <ListItemText primary={'Trash'}/>
           </ListItem>
         </List>
@@ -324,10 +332,16 @@ export default function MiniDrawer() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div>
-          <CreateNote/>
-          <div className="note-display-div">
-          <DisplayNote/>
-          </div>
+          <Switch>
+									<ProtectedRoute
+									 exact path={"/dashboard"}
+										component={Note}
+									/>
+                  <ProtectedRoute
+									 exact path={"/dashboard/trash"}
+										component={Trash}
+									/>
+					</Switch>
         </div>
       </main>
     </div>

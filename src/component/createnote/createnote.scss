@@ -3,6 +3,7 @@
     justify-content: center;
     // border: 1px solid black;
     width: 100%;
+    padding-bottom: 5px;
 }
 .take-note{
     display: flex;
@@ -27,7 +28,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.icon{
+.take-icon{
     cursor: pointer;
     // width: 10px;
 }
@@ -78,4 +79,13 @@
     .position{
         right: 250px;
     }
+}
+.title-pin{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.pin{
+    width:25px;
+    cursor: pointer;
 }

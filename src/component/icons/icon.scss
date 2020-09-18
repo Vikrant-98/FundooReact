@@ -14,7 +14,11 @@
     width: 35px;
     height: 35px;
     border-radius: 20px;
+    cursor: pointer;
 }
 .note-icons-hover:hover {
     background-color: rgb(211, 206, 206);
+}
+.trash{
+    width: 70px;
 }

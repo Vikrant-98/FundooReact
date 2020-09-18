@@ -4,24 +4,29 @@ import Login from './component/login/login';
 import Register from './component/registrer/register';
 import Dashboard from './component/dashboard/dashboard';
 import Error from './component/Error/error';
-import {Route,Switch} from 'react-router-dom';
-import Snackbar from './component/snackbar/snackbar'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {Provider} from 'react-redux';
-import store from './services/redux/store/store'
+import store from './services/redux/store/store';
+import {ProtectedRoute} from '../src/services/auth/protected';
+import Trash from '../src/component/trash/trash'
 
 
 function App() {
   return (
     <Provider store={store}>
+      <BrowserRouter>
     <div className="App">
       <Switch>
         <Route exact path="/" component={Login}/>
         <Route exact path="/register" component={Register}/>
-        <Route exact path="/dashboard" component={Dashboard}/>
-        <Route exact path="/snack" component={Snackbar}/>
+        <ProtectedRoute path={'/dashboard'} component={Dashboard} />
+          <BrowserRouter>
+            <ProtectedRoute	path={"/dashboard/trash"} component={Trash}/>
+          </BrowserRouter>
         <Route component={Error}/>
       </Switch>
     </div>
+    </BrowserRouter>
     </Provider>
   );
 }
