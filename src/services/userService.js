@@ -55,6 +55,12 @@ class UserService{
         let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/deleteForeverNotes';
         return this.axios_service.post(url,data);
     }
+    getArchiveNotes() 
+    {
+        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/getArchiveNotesList';
+        return this.axios_service.Get(url);
+    }
+    
 
 
 }

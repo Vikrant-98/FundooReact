@@ -28,6 +28,7 @@ import Trash from '../trash/trash';
 import '../toolbar/toolbar.scss';
 import {ProtectedRoute} from '../../services/auth/protected';
 import {Link,Switch } from "react-router-dom";
+import Archive from '../archive/archive';
 
 
 const drawerWidth = 240;
@@ -129,7 +130,10 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    "& .MuiDrawer-paperAnchorDockedLeft": {
+      borderRight: 'none'
+  }
   },
   drawerOpen: {
     width: drawerWidth,
@@ -164,6 +168,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  link:{
+    textDecoration:'none',
+    color: '#707070'
+  },
+  sideIcon:{
+    borderRadius:'20px'
+  }
 }));
 
 export default function MiniDrawer() {
@@ -296,37 +307,40 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-
         </div>
         <List
           onMouseEnter={handleDrawerOpen}
           onMouseLeave={handleDrawerClose}>
-          <ListItem button key={'Notes'} className="notes">
-          <Link to="/dashboard">
+          <Link to="/dashboard" className={classes.link}>
+          <ListItem button key={'Notes'}  className={classes.sideIcon}>
             <ListItemIcon>
             <EmojiObjectsOutlinedIcon /> 
             </ListItemIcon>
-            </Link>
             <ListItemText primary={'Notes'}/>
           </ListItem>
-          <ListItem button key={'Remainders'} className="remainder">
+          </Link>
+          <ListItem button key={'Remainders'} className={classes.sideIcon}>
             <ListItemIcon><NotificationsNoneOutlinedIcon/></ListItemIcon>
             <ListItemText primary={'Remainders'}/>
           </ListItem>
-          <ListItem button key={'Editlabels'} className="editlabels">
+          <ListItem button key={'Editlabels'}  className={classes.sideIcon}>
             <ListItemIcon><EditOutlinedIcon/></ListItemIcon>
             <ListItemText primary={'Edit labels'}/>
           </ListItem>
-          <ListItem button key={'Archive'} className="archive">
-            <ListItemIcon><ArchiveOutlinedIcon/></ListItemIcon>
+          <Link to="/dashboard/archive" className={classes.link}>
+          <ListItem button key={'Archive'}  className={classes.sideIcon}>
+            <ListItemIcon>
+            <ArchiveOutlinedIcon/>
+            </ListItemIcon>
             <ListItemText primary={'Archive'}/>
           </ListItem>
-          <ListItem button key={'Trash'} className="trash">
-            <Link to="/dashboard/trash">
+          </Link>
+          <Link to="/dashboard/trash" className={classes.link}>
+          <ListItem button key={'Trash'} className={classes.sideIcon}>
             <ListItemIcon><DeleteOutlineOutlinedIcon/></ListItemIcon>
-            </Link>
             <ListItemText primary={'Trash'}/>
           </ListItem>
+          </Link>
         </List>
       </Drawer>
       <main className={classes.content}>
@@ -340,6 +354,10 @@ export default function MiniDrawer() {
                   <ProtectedRoute
 									 exact path={"/dashboard/trash"}
 										component={Trash}
+									/>
+                  <ProtectedRoute
+									 exact path={"/dashboard/archive"}
+										component={Archive}
 									/>
 					</Switch>
         </div>

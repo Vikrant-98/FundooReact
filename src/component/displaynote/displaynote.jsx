@@ -37,15 +37,7 @@ export default function Note(props) {
             </div>
             <div className="icon-div">
                 <div className="icon">
-
                     {selectIcon(props)}
-                
-                    {/* {props.value.isDeleted == false ? (
-                        <Icons val={props.value} />
-                    ) : (
-                            <TrashIcons val={props.value} />
-                        )} */}
-                    
                 </div>
             </div>
         </div>

@@ -12,23 +12,45 @@ import pin from '../../asserts/pinn.svg'
 export default class CreateNote extends React.Component{
     constructor(){
         super();
-
+        const classes = useStyles();
         this.state={
             open: true,
             title:"",
             note:""
         }
+        
     } 
-    
-    useStyles = makeStyles((theme) => ({
+    useStyles = makeStyles(() => ({
 
+        textField:{
+            "& .MuiInput-underline:before": {
+                left: '0',
+                right: '0',
+                bottom: '0',
+                content: "",
+                position: 'absolute',
+                transition: 'none',
+                borderBottom: 'none',
+                pointerEvents: 'none',
+            },
+            "& .MuiInput-underline:after": {
+                left: '0',
+                right: '0',
+                bottom: '0',
+                content: "",
+                position: 'absolute',
+                transition: 'none',
+                borderBottom: 'none',
+                pointerEvents: 'none',
+            }
+        }   
     }))
     handleNoteOpen = () => {
         this.setState({
             open:false
         },() => {console.log(this.state);})
     }
-    
+
     handleNoteclose = () => {
         let userData = {
             title: this.state.title,
@@ -83,8 +105,6 @@ export default class CreateNote extends React.Component{
                 <div className="take-note take-note-expand">
                         <div className="take-note-input">
                         <div className="title-pin">
-                            {/* <input className="title-input" placeholder="Title" type="text-area"/> */}
-                            {/* <textarea className="title-input" placeholder="Title"></textarea> */}
                             <TextField 
                                 className="title-input"
                                 name="title"
@@ -92,18 +112,16 @@ export default class CreateNote extends React.Component{
                                 placeholder="Title"
                                 multiline
                             />
-                            {/* <RoomIcon/> */}
                             <img className="pin" src={pin} alt=""/>
                         </div>
                         <TextField 
-                                className="text-input"
+                                className="title-input"
                                 name="note"
                                 onChange={this.handleInput}
                                 placeholder="Take a note.."
                                 multiline
                                 inputProps={{ 'aria-label': 'naked' }}
                             />
-                        {/* <input className="text-input" placeholder="Take a note.." type="text"/> */}
                         </div>
                         <div className="position">
                             <Icons/>

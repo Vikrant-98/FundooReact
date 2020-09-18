@@ -8,7 +8,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './services/redux/store/store';
 import {ProtectedRoute} from '../src/services/auth/protected';
-import Trash from '../src/component/trash/trash'
+import Trash from '../src/component/trash/trash';
+import Archive from '../src/component/archive/archive';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <ProtectedRoute path={'/dashboard'} component={Dashboard} />
           <BrowserRouter>
             <ProtectedRoute	path={"/dashboard/trash"} component={Trash}/>
+            <ProtectedRoute	path={"/dashboard/archive"} component={Archive}/>
           </BrowserRouter>
         <Route component={Error}/>
       </Switch>

@@ -1,26 +1,23 @@
 import React from 'react';
 import DisplayNote from '../displaynote/displaynote';
-import '../displaynote/displaynote.scss';
 import user_service from '../../services/userService';
 
-
-export default class Note extends React.Component{
+export default class Archive extends React.Component{
     constructor(){
         super();
-        this.getAllNotes();
+        this.getAllArchiveNotes();
         this.state={
             notes:[]
         }
-        console.log("notes :",this.state.notes)
     }
 
-    getAllNotes=()=>{
-        user_service.getAllNotes().then((data) =>{
-            console.log('All Notes',data.data.data);
+    getAllArchiveNotes=()=>{
+        user_service.getArchiveNotes().then((data) =>{
+            console.log('All Archive Notes',data.data.data);
             
             this.setState({
                 notes:data.data.data.data
-            },()=>console.log("All Notes call",this.state.notes))
+            },()=>console.log("All Archive call",this.state.notes))
             
       }).catch(error=>{
 
@@ -32,14 +29,13 @@ export default class Note extends React.Component{
     }
 
     render(){
-        
         return(
             <div className="note-position">
             {this.state.notes.filter((element) => {
-                return element.isArchived === false && element.isDeleted === false;
+                return element.isArchived === true;
             }).reverse().map(this.note)}
             </div>
         )
-        
     }
+
 }

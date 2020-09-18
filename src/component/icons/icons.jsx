@@ -10,6 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import user_service from '../../services/userService';
+import UnarchiveOutlinedIcon from '@material-ui/icons/UnarchiveOutlined';
 
 
 export default class Icons extends React.Component{
@@ -17,7 +18,8 @@ export default class Icons extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            anchorEl:null
+            anchorEl:null,
+            archive:false
         }
     }
 
@@ -59,6 +61,32 @@ export default class Icons extends React.Component{
           console.log("Archive",Data);
     }
 
+    onUnArchive=()=>{
+        let Data = {
+            noteIdList: [this.props.val.id],
+            isArchived: false,
+          };
+          user_service.archiveNote(Data).then((data) =>{
+            console.log('Archive Note',data);
+          }).catch(error=>{
+            console.log('Archive error',error);
+        })
+          console.log("Archive",Data);
+    }
+
+    selectIcon=(props) => {
+
+        switch (props) {
+            case !props.val.isArchived :
+                return <ArchiveOutlinedIcon onClick={this.onArchive} className="icon-size" />
+            case props.val.isArchived:
+                  return <UnarchiveOutlinedIcon onClick={this.onUnArchive} className="icon-size" />
+            default:
+                return <ArchiveOutlinedIcon onClick={this.onArchive} className="icon-size" />
+        }
+    
+    }
+
     render=()=>{
     return (
         <StylesProvider injectFirst>
@@ -76,7 +104,12 @@ export default class Icons extends React.Component{
                     <ImageOutlinedIcon className="icon-size" />
                 </div>
                 <div className="note-icons-hover">
-                    <ArchiveOutlinedIcon onClick={this.onArchive} className="icon-size" />
+                    {this.state.archive === false || this.props.val.isArchived === false ? (
+                        <ArchiveOutlinedIcon onClick={this.onArchive} className="icon-size" />
+                    ) : (
+                        <UnarchiveOutlinedIcon onClick={this.onUnArchive} className="icon-size" />
+                    )}
+                    {/* {this.selectIcon(this.props)} */}
                 </div>
                 <div>
                     <div className="note-icons-hover">
