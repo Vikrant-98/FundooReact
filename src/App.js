@@ -5,8 +5,6 @@ import Register from './component/registrer/register';
 import Dashboard from './component/dashboard/dashboard';
 import Error from './component/Error/error';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {Provider} from 'react-redux';
-import store from './services/redux/store/store';
 import {ProtectedRoute} from '../src/services/auth/protected';
 import Trash from '../src/component/trash/trash';
 import Archive from '../src/component/archive/archive';
@@ -14,7 +12,6 @@ import Archive from '../src/component/archive/archive';
 
 function App() {
   return (
-    <Provider store={store}>
       <BrowserRouter>
     <div className="App">
       <Switch>
@@ -29,7 +26,6 @@ function App() {
       </Switch>
     </div>
     </BrowserRouter>
-    </Provider>
   );
 }
 

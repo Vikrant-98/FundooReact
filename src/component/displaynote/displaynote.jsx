@@ -5,10 +5,11 @@ import pin from '../../asserts/pinn.svg';
 import unpin from '../../asserts/unpinn.svg';
 import TrashIcons from '../icons/trashicon';
 import user_service from '../../services/userService'
+import { connect } from 'react-redux';
+import * as actionCreators from '../../services/redux/action/action.jsx';
 
 
-
-export default class Note extends React.Component{
+class DisplayNote extends React.Component{
 
     constructor(props){
         super(props);
@@ -21,7 +22,6 @@ export default class Note extends React.Component{
           };
           user_service.pinNote(Data).then((data) => {
             console.log('Pin Note', data);
-            window.location.reload(false);
         }).catch(error => {
             console.log('Pin error', error);
         })
@@ -34,7 +34,7 @@ export default class Note extends React.Component{
           };
           user_service.pinNote(Data).then((data) => {
             console.log('Pin Note', data);
-            window.location.reload(false);
+            
         }).catch(error => {
             console.log('Pin error', error);
         })
@@ -52,10 +52,10 @@ export default class Note extends React.Component{
                         {this.props.value.title}
                     </div>
                     { this.props.value.isPined === false ? (
-                        <img className="pinn" onClick={this.onPin} src={unpin} alt="" />
+                        <img className="pinn" onClick={this.onPin } src={unpin} alt="" />
 
                     ) : (
-                        <img className="pinn" onClick={this.onUnPin} src={pin} alt="" />
+                        <img className="pinn" onClick={ this.onUnPin } src={pin} alt="" />
                     )}
                     
                 </div>
@@ -76,3 +76,9 @@ export default class Note extends React.Component{
     )
 }
 }
+
+const matStateToProps=(states)=>{
+    return states
+}
+
+export default connect(matStateToProps,actionCreators)(DisplayNote);

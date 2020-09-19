@@ -11,11 +11,13 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import user_service from '../../services/userService';
 import UnarchiveOutlinedIcon from '@material-ui/icons/UnarchiveOutlined';
 import Popper from '../icons/popper';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../services/redux/action/action.jsx';
 
-export default class Icons extends React.Component {
+class Icons extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor(prop) {
+        super(prop);
         this.state = {
             anchorEl: null
         }
@@ -36,12 +38,12 @@ export default class Icons extends React.Component {
 
     onDelete = () => {
         let Data = {
-            noteIdList: [this.props.val.id],
+            noteIdList: [this.prop.val.id],
             isDeleted: true,
         };
         user_service.deleteNote(Data).then((data) => {
             console.log('Delete Note', data);
-            window.location.reload(false);
+            
         }).catch(error => {
             console.log('Delete error', error);
         })
@@ -50,12 +52,11 @@ export default class Icons extends React.Component {
 
     onArchive = () => {
         let Data = {
-            noteIdList: [this.props.val.id],
+            noteIdList: [this.prop.val.id],
             isArchived: true,
         };
         user_service.archiveNote(Data).then((data) => {
             console.log('Archive Note', data);
-            window.location.reload(false);
         }).catch(error => {
             console.log('Archive error', error);
         })
@@ -64,12 +65,11 @@ export default class Icons extends React.Component {
 
     onUnArchive = () => {
         let Data = {
-            noteIdList: [this.props.val.id],
+            noteIdList: [this.prop.val.id],
             isArchived: false,
         };
         user_service.archiveNote(Data).then((data) => {
             console.log('Archive Note', data);
-            window.location.reload(false);
         }).catch(error => {
             console.log('Archive error', error);
         })
@@ -97,9 +97,9 @@ export default class Icons extends React.Component {
                     </div>
                     <div className="note-icons-hover">
                         {this.props.archive === false || this.props.val.isArchived === false ? (
-                            <ArchiveOutlinedIcon onClick={this.onArchive} className="icon-size" />
+                            <ArchiveOutlinedIcon onClick={this.onArchive } className="icon-size" />
                         ) : (
-                                <UnarchiveOutlinedIcon onClick={this.onUnArchive} className="icon-size" />
+                                <UnarchiveOutlinedIcon onClick={this.onUnArchive ,this.props.getAllNotes} className="icon-size" />
                             )}
                     </div>
                     <div>
@@ -113,7 +113,7 @@ export default class Icons extends React.Component {
                             open={Boolean(this.state.anchorEl)}
                             onClose={this.handleClose}
                         >
-                            <MenuItem onClick={this.onDelete}>Delete</MenuItem>
+                            <MenuItem onClick={this.onDelete,this.props.getAllNotes}>Delete</MenuItem>
                         </Menu>
                     </div>
                 </div>
@@ -122,3 +122,9 @@ export default class Icons extends React.Component {
     }
 
 }
+
+const matStateToProps=(states)=>{
+    return states
+}
+
+export default connect(matStateToProps,actionCreators)(Icons);

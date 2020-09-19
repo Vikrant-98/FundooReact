@@ -1,18 +1,22 @@
-import {status} from '../action/declaration/type';
+import { changeNote } from "../action/action";
 
-const initialState={
-    open:false
+let defaultState={
+    Notes:[]
 }
 
-const drawerStatus=(state=initialState, action)=>{
-
-    switch(action.type){
-        case status:return{
+const mainReducer=(state=defaultState,action)=>{
+    if(action.type==="CHANGE_NOTE"){
+        console.log("changeNote");
+        return{
             ...state,
-            open:!state.open
+            Notes:action.Notes
         }
-        default:return state;
+    } else{
+        console.log("default Note");
+        return{
+            Notes:[]
+        }
     }
 }
 
-export default drawerStatus;
+export default mainReducer;

@@ -2,30 +2,33 @@ import React from 'react';
 import DisplayNote from '../displaynote/displaynote';
 import '../displaynote/displaynote.scss';
 import user_service from '../../services/userService';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../services/redux/action/action.jsx';
 
 
-export default class Note extends React.Component{
+class Note extends React.Component{
     constructor(){
         super();
-        this.getAllNotes();
+        // this.getAllNotes();
+       
         this.state={
             notes:[]
-        }
+    }
         console.log("notes :",this.state.notes)
     }
 
-    getAllNotes=()=>{
-        user_service.getAllNotes().then((data) =>{
-            console.log('All Notes',data.data.data);
+    // getAllNotes=()=>{
+    //     user_service.getAllNotes().then((data) =>{
+    //         console.log('All Notes',data.data.data);
             
-            this.setState({
-                notes:data.data.data.data
-            },()=>console.log("All Notes call",this.state.notes))
+    //         this.setState({
+    //             notes:data.data.data.data
+    //         },()=>console.log("All Notes call",this.state.notes))
             
-      }).catch(error=>{
+    //   }).catch(error=>{
 
-      })
-    }
+    //   })
+    // }
 
     note=(val)=>{
         return( <DisplayNote value={val}/>)
@@ -40,7 +43,7 @@ export default class Note extends React.Component{
                     Pinned
                 </span>
                 <div className="note-position">
-                    {this.state.notes.filter((element) => {
+                    {this.props.Notes.filter((element) => {
                         return element.isArchived === false && element.isDeleted === false && element.isPined === false;
                     }).reverse().map(this.note)}
                 </div>
@@ -50,13 +53,22 @@ export default class Note extends React.Component{
                     Unpinned
                 </span>
                 <div className="note-position">
-                {this.state.notes.filter((element) => {
+                {this.props.Notes.filter((element) => {
                         return element.isArchived === false && element.isDeleted === false && element.isPined === true;
                     }).reverse().map(this.note)}
                 </div>
             </div>
+            <button onClick={this.props.getAllNotes}>
+                click
+            </button>
             </>
         )
         
     }
 }
+
+const matStateToProps=(states)=>{
+    return states
+}
+
+export default connect(matStateToProps,actionCreators)(Note);
