@@ -7,12 +7,40 @@ import user_service from '../../services/userService';
 import '../createnote/createnote.scss';
 import Icons from '../icons/icons';
 import { makeStyles} from '@material-ui/core/styles';
-import pin from '../../asserts/pinn.svg'
+import pin from '../../asserts/pinn.svg';
+
+// const classes = useStyles();
+
+// useStyles = makeStyles(() => ({
+
+//         textField:{
+//             "& .MuiInput-underline:before": {
+//                 left: '0',
+//                 right: '0',
+//                 bottom: '0',
+//                 content: "",
+//                 position: 'absolute',
+//                 transition: 'none',
+//                 borderBottom: 'none',
+//                 pointerEvents: 'none',
+//             },
+//             "& .MuiInput-underline:after": {
+//                 left: '0',
+//                 right: '0',
+//                 bottom: '0',
+//                 content: "",
+//                 position: 'absolute',
+//                 transition: 'none',
+//                 borderBottom: 'none',
+//                 pointerEvents: 'none',
+//             }
+//         }   
+//     }))
 
 export default class CreateNote extends React.Component{
     constructor(){
         super();
-        // const classes = useStyles();
+        
         this.state={
             open: true,
             title:"",
@@ -21,31 +49,6 @@ export default class CreateNote extends React.Component{
         }
         
     } 
-    // useStyles = makeStyles(() => ({
-
-    //     textField:{
-    //         "& .MuiInput-underline:before": {
-    //             left: '0',
-    //             right: '0',
-    //             bottom: '0',
-    //             content: "",
-    //             position: 'absolute',
-    //             transition: 'none',
-    //             borderBottom: 'none',
-    //             pointerEvents: 'none',
-    //         },
-    //         "& .MuiInput-underline:after": {
-    //             left: '0',
-    //             right: '0',
-    //             bottom: '0',
-    //             content: "",
-    //             position: 'absolute',
-    //             transition: 'none',
-    //             borderBottom: 'none',
-    //             pointerEvents: 'none',
-    //         }
-    //     }   
-    // }))
     handleNoteOpen = () => {
         this.setState({
             open:false
@@ -60,7 +63,8 @@ export default class CreateNote extends React.Component{
         
         user_service.addNote(userData).then((data) =>{
             console.log('data after added note',data);
-            window.location.reload(false);
+            // window.location.reload(false);
+
             this.setState({
                 open:true,
                 title:"",
@@ -127,7 +131,7 @@ export default class CreateNote extends React.Component{
                             />
                         </div>
                         <div className="position">
-                            <Icons archive={false}/>
+                            <Icons val={{color:'#ffffff'}} archive={false}/>
                         </div>
                         <div 
                             className="close"

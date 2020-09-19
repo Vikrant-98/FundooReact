@@ -4,11 +4,6 @@ class UserService{
 
     constructor(){
         this.axios_service = new axios_service();
-        // let httpOption = {
-        //     headers: new HttpHeaders({
-        //       'Content-Type': 'application/json',
-        //       Authorization: localStorage.getItem('token'),
-        //     })}
     }
 
     login(data){
