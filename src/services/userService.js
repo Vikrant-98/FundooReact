@@ -1,4 +1,5 @@
 import axios_service from '../services/axiosService';
+import {baseURL} from './environment'
 
 class UserService{
 
@@ -7,60 +8,64 @@ class UserService{
     }
 
     login(data){
-       let url = 'http://fundoonotes.incubation.bridgelabz.com/api/user/login';
+       let url = baseURL+'user/login';
        return this.axios_service.post(url,data);
     }
 
     register(data){
-       let url = 'http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp';
+       let url = baseURL+'user/userSignUp';
         return this.axios_service.post(url,data);
     }
 
     addNote(data){
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/addNotes';
+        let url = baseURL+'notes/addNotes';
         return this.axios_service.post(url,data);
     }
 
     getAllNotes(){
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/getNotesList';
+        let url = baseURL+'notes/getNotesList';
         return this.axios_service.Get(url)
     }
 
     deleteNote(data){
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/trashNotes';
+        let url = baseURL+'notes/trashNotes';
         return this.axios_service.post(url,data);
     }
 
     archiveNote(data){
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/archiveNotes';
+        let url = baseURL+'notes/archiveNotes';
         return this.axios_service.post(url,data);
     }
     getTrashNotes() 
     {
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/getTrashNotesList';
+        let url = baseURL+'notes/getTrashNotesList';
         return this.axios_service.Get(url);
     }
     updateNote(data) 
     {
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/updateNotes';
+        let url = baseURL+'notes/updateNotes';
         return this.axios_service.post(url,data);
     }
     deleteNotePermanent(data) 
     {
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/deleteForeverNotes';
+        let url = baseURL+'notes/deleteForeverNotes';
         return this.axios_service.post(url,data);
     }
     getArchiveNotes() 
     {
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/getArchiveNotesList';
+        let url = baseURL+'notes/getArchiveNotesList';
         return this.axios_service.Get(url);
     }
     pinNote(data) 
     {
-        let url = 'http://fundoonotes.incubation.bridgelabz.com/api/notes/pinUnpinNotes';
+        let url = baseURL+'notes/pinUnpinNotes';
         return this.axios_service.post(url,data);
     }
-
+    changeColor(data) 
+    {
+        let url = baseURL+'notes/changesColorNotes';
+        return this.axios_service.post(url,data);
+    }
 
 }
 export default new UserService();

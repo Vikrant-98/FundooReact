@@ -4,7 +4,7 @@ import Icons from '../icons/icons';
 import pin from '../../asserts/pinn.svg';
 import unpin from '../../asserts/unpinn.svg';
 import TrashIcons from '../icons/trashicon';
-import user_service from '../../services/userService'
+import user_service from '../../services/userService';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../services/redux/action/action.jsx';
 
@@ -118,17 +118,17 @@ class DisplayNote extends React.Component{
                     <div className="title-note">
                         {this.props.value.title}
                     </div>
-                    { this.props.value.isPined === false ? (
+                    { this.props.value.isPined === true ? (
+                        <img className="pinn" onClick={ ()=>{
+                            this.onUnPin() ;
+                            this.props.getAllNotes()} 
+                        }  src={unpin} alt="" />
+
+                    ) : (
                         <img className="pinn" onClick={
                             ()=>{
                                 this.onPin() ;
-                                this.props.handleClick()} 
-                        } src={unpin} alt="" />
-
-                    ) : (
-                        <img className="pinn" onClick={ ()=>{
-                            this.onUnPin() ;
-                            this.props.handleClick()} 
+                                this.props.getAllNotes()} 
                         } src={pin} alt="" />
                     )}
                     

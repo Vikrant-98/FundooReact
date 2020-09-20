@@ -12,6 +12,8 @@ import UnarchiveOutlinedIcon from '@material-ui/icons/UnarchiveOutlined';
 import Popper from '../icons/popper';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../services/redux/action/action.jsx';
+import user_service from '../../services/userService';
+
 
 class Icons extends React.Component {
 
@@ -35,6 +37,19 @@ class Icons extends React.Component {
         })
     };
 
+    onSetColor=(color)=>{
+        let Data = {
+            noteIdList: [this.props.val.id],
+            color:color.code
+          };
+          user_service.changeColor(Data).then((data) =>{
+            console.log('Color Note',data);
+          }).catch(error=>{
+            console.log('Color error',error);
+        })
+          console.log("Color",Data);
+    }
+
     render = () => {
 
         return (
@@ -49,7 +64,9 @@ class Icons extends React.Component {
                         <PersonAddOutlinedIcon className="icon-size" />
                     </div>
                     <div className="note-icons-hover">
-                        <Popper/>
+                        <Popper putColor={(Data) => {
+                            this.onSetColor(Data)
+                            this.props.getAllNotes()}} />
                     </div>
                     <div className="note-icons-hover">
                         <ImageOutlinedIcon className="icon-size" />

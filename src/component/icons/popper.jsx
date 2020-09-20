@@ -18,32 +18,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const colors=[{
-    background: '#FFFFFF',
+    code: '#FFFFFF',
 },{
-    background: '#fa8072',
+    code: '#fa8072',
 },{
-    background: '#FF9900',
+    code: '#FF9900',
 },{
-    background: '#FFFF64',
+    code: '#FFFF64',
 },{
-    background: '#66FF66',
+    code: '#66FF66',
 },{
-    background: '#008080',
+    code: '#008080',
 },{
-    background: '#2F5FFF',
+    code: '#2F5FFF',
 },{
-    background: '#00FFFF',
+    code: '#00FFFF',
 },{
-    background: '#9B2C9B',
+    code: '#9B2C9B',
 },{
-    background: '#FFC0CB',
+    code: '#FFC0CB',
 },{
-    background: '#FF1A06',
+    code: '#FF1A06',
 },{
-    background: '#808080',
+    code: '#808080',
 }]
 
-export default function SimplePopper() {
+export default function SimplePopper(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -57,13 +57,16 @@ export default function SimplePopper() {
   const demo=(val)=>{
       return ( <div className="color">
           <div style={{
-              backgroundColor:val.background,
-              color:val.background,
-              width:'30px',
-              height:'30px',
+              backgroundColor:val.code,
+              color:val.code,
+              width:'28px',
+              height:'28px',
               borderRadius:'15px',
               cursor:'pointer'
-              }}>
+              }}
+              onClick={()=>{
+                props.putColor(val);
+                handleClick()}}>
               </div>
           </div> )
   }

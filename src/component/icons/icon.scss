@@ -1,3 +1,8 @@
+@mixin align() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .note-icons{
     display: flex;
     flex-direction: row;
@@ -8,9 +13,7 @@
     width: 18px !important;
 }
 .note-icons-hover{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include align();
     width: 35px;
     height: 35px;
     border-radius: 20px;
@@ -23,6 +26,12 @@
     width: 70px;
 }
 .color{
+    @include align();
     width: 30px;
+    height: 30px;
     margin: 1px;
+    border-radius: 15px;
 }
+.color:hover {
+    background-color: #d1d6da,
+  }
