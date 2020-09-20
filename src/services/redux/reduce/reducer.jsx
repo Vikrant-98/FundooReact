@@ -1,10 +1,15 @@
-import { changeNote } from "../action/action";
 
 let defaultState={
     Notes:[]
 }
+// let defaultDeleteState={
+//     DeleteNotes:[]
+// }
+// let defaultArchiveState={
+//     ArchiveNotes:[]
+// }
 
-const mainReducer=(state=defaultState,action)=>{
+export const Reducer=(state=defaultState,action)=>{
     if(action.type==="CHANGE_NOTE"){
         console.log("changeNote");
         return{
@@ -19,4 +24,31 @@ const mainReducer=(state=defaultState,action)=>{
     }
 }
 
-export default mainReducer;
+// export const DeleteReducer=(state=defaultDeleteState,action)=>{
+//     if(action.type==="CHANGE_NOTE"){
+//         console.log("changeNote");
+//         return{
+//             ...state,
+//             DeleteNotes:action.Notes
+//         }
+//     } else{
+//         console.log("default Note");
+//         return{
+//             DeleteNotes:[]
+//         }
+//     }
+// }
+// export const ArchiveReducer=(state=defaultArchiveState,action)=>{
+//     if(action.type==="CHANGE_NOTE"){
+//         console.log("changeNote");
+//         return{
+//             ...state,
+//             ArchiveNotes:action.Notes
+//         }
+//     } else{
+//         console.log("default Note");
+//         return{
+//             ArchiveNotes:[]
+//         }
+//     }
+// }

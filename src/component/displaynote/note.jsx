@@ -1,9 +1,8 @@
 import React from 'react';
 import DisplayNote from '../displaynote/displaynote';
 import '../displaynote/displaynote.scss';
-import user_service from '../../services/userService';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../services/redux/action/action.jsx';
+import {getAllNotes} from '../../services/redux/action/action.jsx';
 
 
 class Note extends React.Component{
@@ -31,7 +30,9 @@ class Note extends React.Component{
     // }
 
     note=(val)=>{
-        return( <DisplayNote value={val}/>)
+        return( <DisplayNote 
+            handleClick={this.props.getAllNotes}
+            value={val}/>)
     }
 
     render(){
@@ -58,12 +59,11 @@ class Note extends React.Component{
                     }).reverse().map(this.note)}
                 </div>
             </div>
-            <button onClick={this.props.getAllNotes}>
+            {/* <button onClick={this.props.getAllNotes}>
                 click
-            </button>
+            </button> */}
             </>
         )
-        
     }
 }
 
@@ -71,4 +71,4 @@ const matStateToProps=(states)=>{
     return states
 }
 
-export default connect(matStateToProps,actionCreators)(Note);
+export default connect(matStateToProps,getAllNotes)(Note);

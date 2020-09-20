@@ -15,6 +15,8 @@ class DisplayNote extends React.Component{
         super(props);
     }
 
+    state = { archiveMessage: "" }
+
     onPin=()=>{
         let Data = {
             noteIdList: [this.props.value.id],
@@ -40,6 +42,71 @@ class DisplayNote extends React.Component{
         })
     }
 
+    onDelete = () => {
+        let Data = {
+            noteIdList: [this.props.value.id],
+            isDeleted: true,
+        };
+        user_service.deleteNote(Data).then((data) => {
+            console.log('Delete Note', data);
+            
+        }).catch(error => {
+            console.log('Delete error', error);
+        })
+        console.log("delete", Data);
+    }
+
+    onArchive = () => {
+        let Data = {
+            noteIdList: [this.props.value.id],
+            isArchived: true,
+        };
+        user_service.archiveNote(Data).then((data) => {
+            console.log('Archive Note', data);
+        }).catch(error => {
+            console.log('Archive error', error);
+        })
+        console.log("Archive", Data);
+    }
+
+    onUnArchive = () => {
+        let Data = {
+            noteIdList: [this.props.value.id],
+            isArchived: false,
+        };
+        user_service.archiveNote(Data).then((data) => {
+            console.log('Archive Note', data);
+        }).catch(error => {
+            console.log('Archive error', error);
+        })
+        console.log("Archive", Data);
+    }
+
+    onRestore=()=>{
+        let Data = {
+            noteIdList: [this.props.value.id],
+            isDeleted: false,
+          };
+          user_service.deleteNote(Data).then((data) =>{
+            console.log('Restore Note',data);
+          }).catch(error=>{
+            console.log('Restore error',error);
+        })
+          console.log("Restore",Data);
+    }
+
+    onDeletePerminent=()=>{
+        let Data = {
+            noteIdList: [this.props.value.id]
+          };
+          user_service.deleteNotePermanent(Data).then((data) =>{
+            console.log('Delete Note',data);
+          }).catch(error=>{
+            console.log('Delete error',error);
+        })
+          console.log("Delete",Data);
+    }
+
     render(){
         console.log("props", this.props);
     return (
@@ -52,10 +119,17 @@ class DisplayNote extends React.Component{
                         {this.props.value.title}
                     </div>
                     { this.props.value.isPined === false ? (
-                        <img className="pinn" onClick={this.onPin } src={unpin} alt="" />
+                        <img className="pinn" onClick={
+                            ()=>{
+                                this.onPin() ;
+                                this.props.handleClick()} 
+                        } src={unpin} alt="" />
 
                     ) : (
-                        <img className="pinn" onClick={ this.onUnPin } src={pin} alt="" />
+                        <img className="pinn" onClick={ ()=>{
+                            this.onUnPin() ;
+                            this.props.handleClick()} 
+                        } src={pin} alt="" />
                     )}
                     
                 </div>
@@ -66,9 +140,29 @@ class DisplayNote extends React.Component{
             <div className="icon-div">
                 <div className="icon">
                     { this.props.value.isDeleted === false ? (
-                        <Icons val={this.props.value} />
+                        <Icons 
+                        archive={()=>{
+                            this.onArchive();
+                            this.props.getAllNotes()
+                        }}
+                        unarchive={ ()=>{
+                            this.onUnArchive();
+                            this.props.getAllNotes()
+                        }}
+                        delete={()=>{
+                            this.onDelete();
+                            this.props.getAllNotes()
+                        }}
+                        val={this.props.value} />
                     ) : (
-                        <TrashIcons val={this.props.value} />
+                        <div style={{
+                            backgroundColor:this.props.value.color
+                        }}>
+                        <TrashIcons 
+                        deleteRestore={()=>{this.onRestore();this.props.getAllNotes()}}
+                        deletePermanent={()=>{this.onDeletePerminent();this.props.getAllNotes()}}
+                        val={this.props.value} />
+                        </div>
                     )}
                 </div>
             </div>

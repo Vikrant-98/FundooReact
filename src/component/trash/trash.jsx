@@ -1,8 +1,11 @@
 import React from 'react';
 import DisplayNote from '../displaynote/displaynote';
 import user_service from '../../services/userService';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../services/redux/action/action.jsx';
 
-export default class Trash extends React.Component{
+
+class Trash extends React.Component{
     constructor(){
         super();
         this.getAllTrashNotes();
@@ -39,3 +42,8 @@ export default class Trash extends React.Component{
     }
 
 }
+const matStateToProps=(states)=>{
+    return states
+}
+
+export default connect(matStateToProps,actionCreators)(Trash);

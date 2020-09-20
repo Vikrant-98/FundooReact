@@ -4,12 +4,21 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
-import { createStore,applyMiddleware } from 'redux';
+import { createStore,applyMiddleware,combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
-import reducers from '../src/services/redux/reduce/reducer';
+import {Reducer} from '../src/services/redux/reduce/reducer';
 
-let store = createStore(reducers,applyMiddleware(thunk))
+// const masterReducer = combineReducers({
+
+//   noteReducer:Reducer,
+//   deleteReducer:DeleteReducer,
+//   archiveReducer:ArchiveReducer
+
+// })
+
+
+let store = createStore(Reducer,applyMiddleware(thunk))
 
 ReactDOM.render(
   <BrowserRouter>

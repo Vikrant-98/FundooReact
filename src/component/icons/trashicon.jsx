@@ -11,39 +11,14 @@ export default class TrashIcons extends React.Component{
         super(props);
     }
 
-    onRestore=()=>{
-        let Data = {
-            noteIdList: [this.props.val.id],
-            isDeleted: false,
-          };
-          user_service.deleteNote(Data).then((data) =>{
-            console.log('Restore Note',data);
-          }).catch(error=>{
-            console.log('Restore error',error);
-        })
-          console.log("Restore",Data);
-    }
-
-    onDeletePerminent=()=>{
-        let Data = {
-            noteIdList: [this.props.val.id]
-          };
-          user_service.deleteNotePermanent(Data).then((data) =>{
-            console.log('Delete Note',data);
-          }).catch(error=>{
-            console.log('Delete error',error);
-        })
-          console.log("Delete",Data);
-    }
-
-    render=()=>{
+   render=()=>{
     return (
-            <div className="note-icons trash">
-                <div className="note-icons-hover">
-                    <DeleteForeverSharpIcon onClick={this.onDeletePerminent} className="icon-size" />
+            <div className="note-icons trash" >
+                <div className="note-icons-hover" >
+                    <DeleteForeverSharpIcon onClick={()=>{this.props.deleteRestore()}} className="icon-size" />
                 </div>
                 <div className="note-icons-hover">
-                    <RestoreFromTrashSharpIcon onClick={this.onRestore} className="icon-size" />
+                    <RestoreFromTrashSharpIcon onClick={()=>{this.props.deletePermanent()}} className="icon-size" />
                 </div>
             </div>
     )}
