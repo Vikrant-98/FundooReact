@@ -8,6 +8,9 @@ import '../createnote/createnote.scss';
 import Icons from '../icons/icons';
 import { makeStyles} from '@material-ui/core/styles';
 import pin from '../../asserts/pinn.svg';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../services/redux/action/action.jsx';
+
 
 // const classes = useStyles();
 
@@ -37,7 +40,7 @@ import pin from '../../asserts/pinn.svg';
 //         }   
 //     }))
 
-export default class CreateNote extends React.Component{
+class CreateNote extends React.Component{
     constructor(){
         super();
         
@@ -63,7 +66,6 @@ export default class CreateNote extends React.Component{
         
         user_service.addNote(userData).then((data) =>{
             console.log('data after added note',data);
-            // window.location.reload(false);
 
             this.setState({
                 open:true,
@@ -136,7 +138,10 @@ export default class CreateNote extends React.Component{
                         <div 
                             className="close"
                             >
-                            <div onClick={this.handleNoteclose}>
+                            <div onClick={()=>{
+                                this.handleNoteclose();
+                                this.props.getAllNotes()
+                                }}>
                                 close
                             </div>
                         </div>
@@ -146,3 +151,8 @@ export default class CreateNote extends React.Component{
             )
           }    
 }
+const matStateToProps=(states)=>{
+    return states
+}
+
+export default connect(matStateToProps,actionCreators)(CreateNote);

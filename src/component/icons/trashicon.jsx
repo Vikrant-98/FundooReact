@@ -15,10 +15,10 @@ export default class TrashIcons extends React.Component{
     return (
             <div className="note-icons trash" >
                 <div className="note-icons-hover" >
-                    <DeleteForeverSharpIcon onClick={()=>{this.props.deleteRestore()}} className="icon-size" />
+                    <DeleteForeverSharpIcon onClick={()=>{this.props.deletePermanent()}} className="icon-size" />
                 </div>
                 <div className="note-icons-hover">
-                    <RestoreFromTrashSharpIcon onClick={()=>{this.props.deletePermanent()}} className="icon-size" />
+                    <RestoreFromTrashSharpIcon onClick={()=>{this.props.deleteRestore()}} className="icon-size" />
                 </div>
             </div>
     )}

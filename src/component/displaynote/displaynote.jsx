@@ -15,8 +15,6 @@ class DisplayNote extends React.Component{
         super(props);
     }
 
-    state = { archiveMessage: "" }
-
     onPin=()=>{
         let Data = {
             noteIdList: [this.props.value.id],
@@ -108,7 +106,6 @@ class DisplayNote extends React.Component{
     }
 
     render(){
-        console.log("props", this.props);
     return (
         <div className="noteDisplay" style={{
                 backgroundColor:this.props.value.color

@@ -10,18 +10,26 @@ let defaultState={
 // }
 
 export const Reducer=(state=defaultState,action)=>{
-    if(action.type==="CHANGE_NOTE"){
+    
         console.log("changeNote");
-        return{
-            ...state,
-            Notes:action.Notes
+        console.log("action",action);
+        switch(action.type){
+            case "CHANGE_NOTE":return{
+                ...state,
+                Notes:action.Notes
+            }
+            case "CHANGE_DELETE_NOTE":return{
+                ...state,
+                Notes:action.DeleteNotes
+            }
+            case "CHANGE_ARCHIVE_NOTE":return{
+                ...state,
+                Notes:action.Notes
+            }
+            default: return {
+                Notes:[]
+            }
         }
-    } else{
-        console.log("default Note");
-        return{
-            Notes:[]
-        }
-    }
 }
 
 // export const DeleteReducer=(state=defaultDeleteState,action)=>{
