@@ -144,7 +144,7 @@ class DisplayNote extends React.Component{
                         }}
                         unarchive={ ()=>{
                             this.onUnArchive();
-                            this.props.getAllNotes()
+                            this.props.getarchiveNotes()
                         }}
                         delete={()=>{
                             this.onDelete();
@@ -156,8 +156,8 @@ class DisplayNote extends React.Component{
                             backgroundColor:this.props.value.color
                         }}>
                         <TrashIcons 
-                        deleteRestore={()=>{this.onRestore();this.props.getAllNotes()}}
-                        deletePermanent={()=>{this.onDeletePerminent();this.props.getAllNotes()}}
+                        deleteRestore={()=>{this.onRestore();this.props.getTrashNotes()}}
+                        deletePermanent={()=>{this.onDeletePerminent();this.props.getTrashNotes()}}
                         val={this.props.value} />
                         </div>
                     )}

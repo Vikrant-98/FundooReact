@@ -2,11 +2,8 @@ import React from "react";
 import "./login.scss";
 import TextField from '@material-ui/core/TextField';
 import user_service from '../../services/userService';
-import { Redirect ,Link } from 'react-router-dom';
 
 export default class Login extends React.Component {
-    
-    // user = new user_service();
 
     constructor(props)
     {

@@ -62,15 +62,15 @@
     justify-content: space-between;
 }
 .close{
-    position: relative;
-    left: 240px;
+    
     cursor: pointer;
 }
-.position{
-    position: relative;
-    right: 150px;
-    top: 25px;
-    width: 250px;
+
+.align-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 @media(max-width:600px){
     .take-note{

@@ -27,7 +27,9 @@ import '../toolbar/toolbar.scss';
 import {ProtectedRoute} from '../../services/auth/protected';
 import {Link,Switch } from "react-router-dom";
 import Archive from '../archive/archive';
-
+import Search from '../search/search';
+import { connect } from 'react-redux';
+import {updateSearch} from '../../services/redux/action/action.jsx';
 
 const drawerWidth = 240;
 
@@ -178,7 +180,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MiniDrawer() {
+function MiniDrawer(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -239,6 +241,7 @@ export default function MiniDrawer() {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
+            <Link to="/dashboard/search" className={classes.link}>
             <InputBase
               placeholder="Search…"
               classes={{
@@ -246,7 +249,9 @@ export default function MiniDrawer() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e)=>{props.changeName(e.target.value)}}
             />
+            </Link>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -329,9 +334,28 @@ export default function MiniDrawer() {
 									 exact path={"/dashboard/archive"}
 										component={Archive}
 									/>
+                  <ProtectedRoute
+									 exact path={"/dashboard/search"}
+										component={Search}
+									/>
 					</Switch>
         </div>
       </main>
     </div>
   );
 }
+
+// const mapStateToProps=(state)=>{
+//   return{
+//     Text:state.Text
+//   }
+// }
+
+const mapDispatchToProps=(dispatch)=>{
+  
+  return{
+    changeName:(text)=>{dispatch(updateSearch(text))}
+  }
+}
+
+export default connect(null,mapDispatchToProps)(MiniDrawer)

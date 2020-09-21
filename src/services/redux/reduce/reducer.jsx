@@ -1,13 +1,18 @@
+import user_service from '../../userService';
+
 
 let defaultState={
     Notes:[]
 }
-// let defaultDeleteState={
-//     DeleteNotes:[]
-// }
-// let defaultArchiveState={
-//     ArchiveNotes:[]
-// }
+let defaultDeleteState={
+    DeleteNotes:[]
+}
+let defaultArchiveState={
+    ArchiveNotes:[]
+}
+let initialState={
+    Text:''
+}
 
 export const Reducer=(state=defaultState,action)=>{
     
@@ -18,45 +23,50 @@ export const Reducer=(state=defaultState,action)=>{
                 ...state,
                 Notes:action.Notes
             }
-            case "CHANGE_DELETE_NOTE":return{
-                ...state,
-                Notes:action.DeleteNotes
-            }
-            case "CHANGE_ARCHIVE_NOTE":return{
-                ...state,
-                Notes:action.Notes
-            }
             default: return {
-                Notes:[]
+                Notes:state.Notes
             }
         }
 }
 
-// export const DeleteReducer=(state=defaultDeleteState,action)=>{
-//     if(action.type==="CHANGE_NOTE"){
-//         console.log("changeNote");
-//         return{
-//             ...state,
-//             DeleteNotes:action.Notes
-//         }
-//     } else{
-//         console.log("default Note");
-//         return{
-//             DeleteNotes:[]
-//         }
-//     }
-// }
-// export const ArchiveReducer=(state=defaultArchiveState,action)=>{
-//     if(action.type==="CHANGE_NOTE"){
-//         console.log("changeNote");
-//         return{
-//             ...state,
-//             ArchiveNotes:action.Notes
-//         }
-//     } else{
-//         console.log("default Note");
-//         return{
-//             ArchiveNotes:[]
-//         }
-//     }
-// }
+export const archiveReducer=(state=defaultArchiveState,action)=>{
+    
+    console.log("changeNote");
+    console.log("action",action);
+    switch(action.type){
+        case "CHANGE_ARCHIVE_NOTE":return{
+            ...state,
+            ArchiveNotes:action.ArchiveNotes
+        }
+        default: return {
+            ArchiveNotes:state.ArchiveNotes
+        }
+    }
+}
+
+export const deleteReducer=(state=defaultDeleteState,action)=>{
+    
+    console.log("changeNote");
+    console.log("action",action);
+    switch(action.type){
+        case "CHANGE_DELETE_NOTE":return{
+            ...state,
+            DeleteNotes:action.DeleteNotes
+        }
+        default: return {
+            DeleteNotes:state.DeleteNotes
+        }
+    }
+}
+
+export const searchReducer=(state=initialState,action)=>{
+
+    if(action.type==="CHANGE_SEARCH"){
+        console.log("action",action);
+        return{
+            ...state,
+            Text:action.Text
+        }
+    }
+    return state;
+}

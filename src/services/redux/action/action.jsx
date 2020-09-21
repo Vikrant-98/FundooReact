@@ -40,7 +40,7 @@ export function getarchiveNotes(){
     
 }
 
-export function changeNote(Notes){
+function changeNote(Notes){
     console.log("Notes",Notes)
     return{
         type:"CHANGE_NOTE",
@@ -48,17 +48,26 @@ export function changeNote(Notes){
     }
     
 }
-export function changeDeleteNote(DeleteNotes){
+function changeDeleteNote(DeleteNotes){
     console.log("Delete Note",DeleteNotes)
     return{
         type:"CHANGE_DELETE_NOTE",
         DeleteNotes:DeleteNotes
     }
 }
-export function changeArchiveNote(ArchiveNotes){
+function changeArchiveNote(ArchiveNotes){
     console.log("Archive Notes",ArchiveNotes)
     return{
         type:"CHANGE_ARCHIVE_NOTE",
-        Notes:ArchiveNotes
+        ArchiveNotes:ArchiveNotes
     }
+}
+
+export const updateSearch = (text) =>{
+
+    return({
+            type:'CHANGE_SEARCH',
+            Text:text
+          })
+
 }

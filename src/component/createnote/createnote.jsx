@@ -132,6 +132,7 @@ class CreateNote extends React.Component{
                                 inputProps={{ 'aria-label': 'naked' }}
                             />
                         </div>
+                        <div className="align-icon">
                         <div className="position">
                             <Icons val={{color:'#ffffff'}} archive={false}/>
                         </div>
@@ -144,6 +145,7 @@ class CreateNote extends React.Component{
                                 }}>
                                 close
                             </div>
+                        </div>
                         </div>
                     </div>
               )}

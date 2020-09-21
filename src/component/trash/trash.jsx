@@ -5,10 +5,7 @@ import {getTrashNotes} from '../../services/redux/action/action.jsx';
 
 
 class Trash extends React.Component{
-    constructor(){
-        super();
-    }
-
+  
     note=(val)=>{
         return( <DisplayNote value={val}/>)
     }
@@ -16,7 +13,7 @@ class Trash extends React.Component{
     render(){
         return(
             <div className="note-position">
-            {this.props.Notes.filter((element) => {
+            {this.props.deleteReducer.DeleteNotes.filter((element) => {
                 return element.isDeleted === true;
             }).reverse().map(this.note)}
             </div>

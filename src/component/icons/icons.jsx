@@ -44,6 +44,7 @@ class Icons extends React.Component {
           };
           user_service.changeColor(Data).then((data) =>{
             console.log('Color Note',data);
+            this.props.getAllNotes();
           }).catch(error=>{
             console.log('Color error',error);
         })
@@ -66,7 +67,7 @@ class Icons extends React.Component {
                     <div className="note-icons-hover">
                         <Popper putColor={(Data) => {
                             this.onSetColor(Data)
-                            this.props.getAllNotes()}} />
+                            }} />
                     </div>
                     <div className="note-icons-hover">
                         <ImageOutlinedIcon className="icon-size" />

@@ -6,9 +6,6 @@ import {getAllNotes} from '../../services/redux/action/action.jsx';
 
 
 class Note extends React.Component{
-    constructor(){
-        super();
-    }
 
     note=(val)=>{
         return( <DisplayNote 
@@ -24,7 +21,7 @@ class Note extends React.Component{
                     Pinned
                 </span>
                 <div className="note-position">
-                {this.props.Notes.filter((element) => {
+                {this.props.Reducer.Notes.filter((element) => {
                         return element.isArchived === false && element.isDeleted === false && element.isPined === true;
                     }).reverse().map(this.note)}
                 </div>
@@ -34,7 +31,7 @@ class Note extends React.Component{
                     Unpinned
                 </span>
                 <div className="note-position">
-                    {this.props.Notes.filter((element) => {
+                    {this.props.Reducer.Notes.filter((element) => {
                         return element.isArchived === false && element.isDeleted === false && element.isPined === false;
                     }).reverse().map(this.note)}
                 </div>

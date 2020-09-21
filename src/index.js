@@ -7,18 +7,16 @@ import {BrowserRouter} from 'react-router-dom';
 import { createStore,applyMiddleware,combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
-import {Reducer} from '../src/services/redux/reduce/reducer';
+import {Reducer,searchReducer,archiveReducer,deleteReducer} from '../src/services/redux/reduce/reducer';
 
-// const masterReducer = combineReducers({
-
-//   noteReducer:Reducer,
-//   deleteReducer:DeleteReducer,
-//   archiveReducer:ArchiveReducer
-
-// })
+const masterReducer = combineReducers({
+  Reducer,
+  searchReducer,
+  archiveReducer,
+  deleteReducer})
 
 
-let store = createStore(Reducer,applyMiddleware(thunk))
+let store = createStore(masterReducer,applyMiddleware(thunk))
 
 ReactDOM.render(
   <BrowserRouter>

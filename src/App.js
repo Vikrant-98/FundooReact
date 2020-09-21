@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {ProtectedRoute} from '../src/services/auth/protected';
 import Trash from '../src/component/trash/trash';
 import Archive from '../src/component/archive/archive';
+import Search from '../src/component/search/search'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <BrowserRouter>
             <ProtectedRoute	path={"/dashboard/trash"} component={Trash}/>
             <ProtectedRoute	path={"/dashboard/archive"} component={Archive}/>
+            <ProtectedRoute	path={"/dashboard/search"} component={Search}/>
           </BrowserRouter>
         <Route component={Error}/>
       </Switch>
