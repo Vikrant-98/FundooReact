@@ -8,10 +8,12 @@
     justify-content: flex-start;
     overflow-wrap: anywhere;
     text-align: left;
+    max-height: 330px;
 }
 .noteDisplay{
     width: 240px;
     min-height: 120px;
+    max-height: 350px;
     border-radius: 8px;
     padding: 8px;
     margin: 10px;
@@ -20,6 +22,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    overflow: scroll;
 }
 .title-note{
     @include input(5px,0px,large);
@@ -44,15 +47,24 @@
   } 
   .title-pinn{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-between;
-      width: 220px;
+      width: 200px;
+  }
+  .align-title-desc{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
   }
   .pinn{
     width:25px;
     cursor: pointer;
+    display: flex;
+    align-items: flex-start;
     display: none;
-}
+  }
   .noteDisplay:hover .icon
   {
      display: block; 
@@ -70,8 +82,22 @@
   .pin{
       margin-left: 10px;
   }
+  .dialog-icon{
+      width:300px
+  }
+  .dialog-close{
+    font-size: larger;
+    font-weight: 600;
+    cursor: pointer;
+  }
   @media(max-width:600px){
     .noteDisplay{
         width: 100%;
+    }
+    .dialog-body{
+        width: 100%;
+    }
+    .dialog-icon{
+        width:80%
     }
   }

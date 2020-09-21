@@ -66,6 +66,11 @@ class UserService{
         let url = baseURL+'notes/changesColorNotes';
         return this.axios_service.post(url,data);
     }
+    updateNote(data) 
+    {
+        let url = baseURL+'notes/updateNotes';
+        return this.axios_service.post(url,data);
+    }
 
 }
 export default new UserService();

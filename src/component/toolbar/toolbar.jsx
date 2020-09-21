@@ -30,6 +30,7 @@ import Archive from '../archive/archive';
 import Search from '../search/search';
 import { connect } from 'react-redux';
 import {updateSearch} from '../../services/redux/action/action.jsx';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const drawerWidth = 240;
 
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column'
   },
   inputRoot: {
-    color: 'inherit',
+    color: 'inherit'
   },
   inputInput: {
     padding: theme.spacing(1.8, 1.8, 1.8, 1.8),
@@ -89,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     height:'100%',
     [theme.breakpoints.up('md')]:{
       width: '53ch',
-    },
+    }
   },
   sectionDesktop: {
     display: 'none',
@@ -241,6 +242,7 @@ function MiniDrawer(props) {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
+            <div>
             <Link to="/dashboard/search" className={classes.link}>
             <InputBase
               placeholder="Search…"
@@ -252,6 +254,10 @@ function MiniDrawer(props) {
               onChange={(e)=>{props.changeName(e.target.value)}}
             />
             </Link>
+            {/* <div className={classes.clearIcon}>
+            <ClearIcon/>
+            </div> */}
+            </div>
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

@@ -6,39 +6,22 @@ import TextField from '@material-ui/core/TextField';
 import user_service from '../../services/userService';
 import '../createnote/createnote.scss';
 import Icons from '../icons/icons';
-import { makeStyles} from '@material-ui/core/styles';
 import pin from '../../asserts/pinn.svg';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../services/redux/action/action.jsx';
+import { withStyles } from '@material-ui/core/styles';
 
 
-// const classes = useStyles();
-
-// useStyles = makeStyles(() => ({
-
-//         textField:{
-//             "& .MuiInput-underline:before": {
-//                 left: '0',
-//                 right: '0',
-//                 bottom: '0',
-//                 content: "",
-//                 position: 'absolute',
-//                 transition: 'none',
-//                 borderBottom: 'none',
-//                 pointerEvents: 'none',
-//             },
-//             "& .MuiInput-underline:after": {
-//                 left: '0',
-//                 right: '0',
-//                 bottom: '0',
-//                 content: "",
-//                 position: 'absolute',
-//                 transition: 'none',
-//                 borderBottom: 'none',
-//                 pointerEvents: 'none',
-//             }
-//         }   
-//     }))
+const styles = {
+    underline: {    
+    "& .MuiInput-underline:before": {
+        position: 'fixed'
+    },
+    "& .MuiInput-underline:after": {
+        position: 'fixed'
+    }
+    }
+  };
 
 class CreateNote extends React.Component{
     constructor(){
@@ -63,7 +46,7 @@ class CreateNote extends React.Component{
             title: this.state.title,
             description: this.state.note
           };
-        
+        if(this.state.title !="" && this.state.description !=""){
         user_service.addNote(userData).then((data) =>{
             console.log('data after added note',data);
 
@@ -79,6 +62,7 @@ class CreateNote extends React.Component{
             },() => {console.log(this.state);});
             console.log("error",error);
       })
+    }
       };
 
     handleInput = (e) =>{
@@ -89,6 +73,7 @@ class CreateNote extends React.Component{
 
       render()
           {
+            const { classes } = this.props;
             return(
                 <div className="note">
                     {this.state.open ? (
@@ -115,16 +100,17 @@ class CreateNote extends React.Component{
                         <div className="take-note-input">
                         <div className="title-pin">
                             <TextField 
-                                className="title-input"
+                                className={classes.underline}
                                 name="title"
                                 onChange={this.handleInput}
+                                
                                 placeholder="Title"
                                 multiline
                             />
                             <img className="pin" src={pin} alt=""/>
                         </div>
                         <TextField 
-                                className="title-input"
+                                className={classes.underline}
                                 name="note"
                                 onChange={this.handleInput}
                                 placeholder="Take a note.."
@@ -157,4 +143,4 @@ const matStateToProps=(states)=>{
     return states
 }
 
-export default connect(matStateToProps,actionCreators)(CreateNote);
+export default connect(matStateToProps,actionCreators)(withStyles(styles)((CreateNote)));
