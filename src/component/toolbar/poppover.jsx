@@ -2,17 +2,20 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Avatar from '@material-ui/core/Avatar';
 import '../toolbar/toolbar.scss';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    border: '1px solid',
+    border: '1px #cdcbcb solid',
     padding: theme.spacing(1),
     backgroundColor: 'white',
     marginTop:'30px',
-    height:'220px'
+    height:'260px',
+    borderRadius:"7px",
+    width:'250px'
   },
   margin: {
     margin: theme.spacing(1),
@@ -38,16 +41,19 @@ export default function SimplePopper() {
 
   return (
     <div>
-      <AccountCircle aria-describedby={id} type="button" onClick={handleClick}/>
-      <Popper id={id} open={open} anchorEl={anchorEl}>
+      <Avatar alt="Remy Sharp" 
+        src="https://lh3.googleusercontent.com/ogw/ADGmqu9fD7T16OvzpM2qMPbPNiicoPEFBxuDORVJpthC=s83-c-mo" 
+        aria-describedby={id} type="button" onClick={handleClick}/>
+      {/* <AccountCircle aria-describedby={id} type="button" onClick={handleClick}/> */}
+      <Popper id={id} open={open} anchorEl={anchorEl} placement={'bottom'}>
         <div className={classes.paper}>
             <div className="profile">
                 <div className="profile-content">
                     <img className="profile-img" src="https://lh3.googleusercontent.com/ogw/ADGmqu9fD7T16OvzpM2qMPbPNiicoPEFBxuDORVJpthC=s83-c-mo" alt=""/>
-                    {localStorage.getItem('email')}</div>
-                <div className="profile-content">{localStorage.getItem('first')}</div>
-                <div className="profile-content">{localStorage.getItem('last')}</div>
-                <div className="profile-content">
+                </div>
+                <div className="profile-content profile-content-name">{localStorage.getItem('first')} {localStorage.getItem('last')}</div>
+                <div className="profile-content">{localStorage.getItem('email')}</div>
+                <div className="profile-content profile-content-icon">
                     <Button variant="contained" 
                     size="small" 
                     color="primary"

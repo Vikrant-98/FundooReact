@@ -6,7 +6,6 @@ import '../icons/icon.scss';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    border: '1px solid',
     borderRadius:'3px',
     maxWidth:'146px',
     display:'flex',
@@ -20,27 +19,27 @@ const useStyles = makeStyles((theme) => ({
 const colors=[{
     code: '#FFFFFF',
 },{
-    code: '#fa8072',
+    code: '#f28b82',
 },{
-    code: '#FF9900',
+    code: '#fbbc04',
 },{
-    code: '#FFFF64',
+    code: '#fff475',
 },{
-    code: '#66FF66',
+    code: '#ccff90',
 },{
-    code: '#008080',
+    code: '#a7ffeb',
 },{
-    code: '#2F5FFF',
+    code: '#cbf0f8',
 },{
-    code: '#00FFFF',
+    code: '#aecbfa',
 },{
-    code: '#9B2C9B',
+    code: '#d7aefb',
 },{
-    code: '#FFC0CB',
+    code: '#fdcfe8',
 },{
-    code: '#FF1A06',
+    code: '#e6c9a8',
 },{
-    code: '#808080',
+    code: '#e8eaed',
 }]
 
 export default function SimplePopper(props) {
@@ -52,7 +51,6 @@ export default function SimplePopper(props) {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
 
   const demo=(val)=>{
       return ( <div className="color">
@@ -74,7 +72,7 @@ export default function SimplePopper(props) {
   return (
     <>
       <PaletteOutlinedIcon className="icon-size" onClick={handleClick}/>
-      <Popper id={id}  open={open} anchorEl={anchorEl}>
+      <Popper  open={open} anchorEl={anchorEl} placement={'bottom-start'} transition>
         <div className={classes.paper}>{colors.map(demo)}</div>
       </Popper>
     </>

@@ -18,9 +18,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: medium;
+}
+.profile-content-name{
+    font-size: larger;
+    font-weight: 600;
 }
 .profile-img{
     width: 100px;
     height: 100px;
     border-radius: 50px;
+    margin-bottom: 15px;
+}
+.profile-content-icon{
+    margin-top: 20px;
 }

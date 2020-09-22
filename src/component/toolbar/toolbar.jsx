@@ -31,6 +31,8 @@ import Search from '../search/search';
 import { connect } from 'react-redux';
 import {updateSearch} from '../../services/redux/action/action.jsx';
 import ClearIcon from '@material-ui/icons/Clear';
+import Avatar from '@material-ui/core/Avatar';
+
 
 const drawerWidth = 240;
 
@@ -89,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height:'100%',
     [theme.breakpoints.up('md')]:{
-      width: '53ch',
+      width: '70ch',
     }
   },
   sectionDesktop: {
@@ -192,32 +194,15 @@ function MiniDrawer(props) {
   const handleDrawerClose= () => {
     setOpen(false);
   };
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = 'primary-search-account-menu';
-  
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <AccountCircle />
-  );
-
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -254,9 +239,7 @@ function MiniDrawer(props) {
               onChange={(e)=>{props.changeName(e.target.value)}}
             />
             </Link>
-            {/* <div className={classes.clearIcon}>
-            <ClearIcon/>
-            </div> */}
+            {/* <ClearIcon/> */}
             </div>
           </div>
           <div className={classes.grow} />
@@ -271,7 +254,9 @@ function MiniDrawer(props) {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {/* <AccountCircle /> */}
+              <Avatar alt="Remy Sharp" 
+                src="https://lh3.googleusercontent.com/ogw/ADGmqu9fD7T16OvzpM2qMPbPNiicoPEFBxuDORVJpthC=s83-c-mo" />
             </IconButton>
           </div>
         </Toolbar>

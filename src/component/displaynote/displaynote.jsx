@@ -10,6 +10,7 @@ import * as actionCreators from '../../services/redux/action/action.jsx';
 import Dialog from '@material-ui/core/Dialog';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import Truncate from 'react-truncate';
 
 
 const styles = {
@@ -167,7 +168,9 @@ class DisplayNote extends React.Component{
                     </div>
                     
                     <div className="description-note">
-                        {this.props.value.description}
+                    <Truncate lines={3} ellipsis={<span>...</span>}>
+                     {this.props.value.description}
+                    </Truncate>  
                     </div>
             </div>
                 { this.props.value.isPined === true ? (

@@ -38,7 +38,7 @@
 .take-note-input{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
 }
 .title-input{
     border: none;
@@ -71,12 +71,14 @@
     justify-content: space-between;
     width: 100%;
 }
+
+.position{
+    width: 270px;
+}
+
 @media(max-width:600px){
     .take-note{
         width: 100%;
-    }
-    .position{
-        right: 250px;
     }
 }
 .title-pin{
