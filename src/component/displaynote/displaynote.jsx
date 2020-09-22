@@ -265,7 +265,7 @@ class DisplayNote extends React.Component{
                             openStatus:!this.state.openStatus
                         });
                     }}>
-                        close
+                        Close
                     </div>
                     </div>
             </Dialog>
