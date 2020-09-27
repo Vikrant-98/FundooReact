@@ -43,38 +43,33 @@ export default class Login extends React.Component {
         this.setState({
             firstName: e.target.value,
             flag:1
-        }, () => { console.log(this.firstName); })
+        })
+
 
         let nameValidation = /^[A-Z]{1}[a-z]{2}[a-z]*$/;
         let inputs = this.state.error;
 
-        console.log("Name validation", nameValidation.test(e.target.value));
-
-        inputs.errorFirstName = nameValidation.test(e.target.value) === true ? "" : "Name Start with caps and atleast 3 ";
+        inputs.errorFirstName = nameValidation.test(e.target.value) === true ? "" : "Name Start with caps and atleast 3";
     }
     onChangeLastName = e => {
         this.setState({
             lastName: e.target.value,
             flag:1
-        }, () => { console.log(this.lastName); })
+        })
 
         let nameValidation = /^[A-Z]{1}[a-z]{2}[a-z]*$/;
         let inputs = this.state.error;
 
-        console.log("Last Name validation", nameValidation.test(e.target.value));
-
-        inputs.errorLastName = nameValidation.test(e.target.value) === true ? "" : "Name Start with caps and atleast 3 ";
+        inputs.errorLastName = nameValidation.test(e.target.value) === true ? "" : "Name Start with caps and atleast 3";
     }
     onChangeEmail = e => {
         this.setState({
             email: e.target.value,
             flag:1
-        }, () => { console.log(this.email); })
+        })
 
         let emailValidation = /^([a-zA-Z0-9]*[.]*[a-zA-Z0-9]*@[a-zA-Z0-9]*.{1}[a-zA-Z0-9]*[.]*[a-zA-Z0-9]*)$/;
         let inputs = this.state.error;
-
-        console.log("Email validation", emailValidation.test(e.target.value));
 
         inputs.errorEmail = emailValidation.test(e.target.value) === true ? "" : "Enter Valid Email";
     }
@@ -82,12 +77,10 @@ export default class Login extends React.Component {
         this.setState({
             password: e.target.value,
             flag:1
-        }, () => { console.log(this.password); })
+        })
 
         let passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/;
         let inputs = this.state.error;
-
-        console.log("Password validation", passwordValidation.test(e.target.value));
 
         inputs.errorPassword = passwordValidation.test(e.target.value) === true ? "" :
             "Enter Valid password";
@@ -96,15 +89,14 @@ export default class Login extends React.Component {
         this.setState({
             confirmPassword: e.target.value,
             flag:1
-        }, () => { console.log(this.confirmPassword); })
+        })
 
         let passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/;
         let inputs = this.state.error;
 
-        console.log("Confirm Password validation", passwordValidation.test(e.target.value));
-
-        inputs.errorConfirmPassword = passwordValidation.test(e.target.value) === true ? ""
-            : "Enter Valid password";
+        inputs.errorConfirmPassword = passwordValidation.test(e.target.value) && 
+        (this.state.password === e.target.value) === true ? ""
+            : "Enter Valid password or not match";
 
 
     }
@@ -181,7 +173,7 @@ export default class Login extends React.Component {
                                         <TextField
                                             className="input-name"
                                             label="First Name"
-                                            onChange={this.onChangeFirstName}
+                                            onChange={(e)=>this.onChangeFirstName(e)}
                                             placeholder="First Name"
                                             variant="outlined" />
                                         <p className="error-msg">{error.errorFirstName}</p>
@@ -190,7 +182,7 @@ export default class Login extends React.Component {
                                         <TextField
                                             className="input-name"
                                             label="Last Name"
-                                            onChange={this.onChangeLastName}
+                                            onChange={(e)=>this.onChangeLastName(e)}
                                             placeholder="Last Name"
                                             variant="outlined" />
                                         <p className="error-msg">{error.errorLastName}</p>
@@ -201,7 +193,7 @@ export default class Login extends React.Component {
                                         <TextField
                                             className="reg-email"
                                             label="Email"
-                                            onChange={this.onChangeEmail}
+                                            onChange={(e)=>this.onChangeEmail(e)}
                                             placeholder="abc@example.com"
                                             variant="outlined" />
                                         <p className="error-msg">{error.errorEmail}</p>
@@ -214,7 +206,7 @@ export default class Login extends React.Component {
                                             className="input-name"
                                             label="Password"
                                             type="password"
-                                            onChange={this.onChangePassword}
+                                            onChange={(e)=>this.onChangePassword(e)}
                                             placeholder="Password"
                                             variant="outlined" />
                                         <p className="error-msg">{error.errorPassword}</p>
@@ -223,7 +215,7 @@ export default class Login extends React.Component {
                                         <TextField
                                             className="input-name"
                                             label="Confirm Password"
-                                            onChange={this.onChangeConfirmPassword}
+                                            onChange={(e)=>this.onChangeConfirmPassword(e)}
                                             placeholder="Confirm Password"
                                             type="password"
                                             variant="outlined" />

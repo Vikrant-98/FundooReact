@@ -2,7 +2,7 @@ import user_service from '../../userService';
 
 export function getAllNotes(){
 
-    return(dispatch)=>{
+    return (dispatch)=>{
         return user_service.getAllNotes().then((data) =>{
         
             dispatch(changeNote(data.data.data.data));

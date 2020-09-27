@@ -168,7 +168,7 @@ class DisplayNote extends React.Component{
                     </div>
                     
                     <div className="description-note">
-                    <Truncate lines={3} ellipsis={<span>...</span>}>
+                    <Truncate lines={10} ellipsis={<span>...</span>}>
                      {this.props.value.description}
                     </Truncate>  
                     </div>
@@ -270,7 +270,6 @@ class DisplayNote extends React.Component{
                     </div>
             </Dialog>
         </div>
-        
         </>
     )
 }

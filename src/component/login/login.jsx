@@ -2,6 +2,8 @@ import React from "react";
 import "./login.scss";
 import TextField from '@material-ui/core/TextField';
 import user_service from '../../services/userService';
+import {Link} from "react-router-dom";
+
 
 export default class Login extends React.Component {
 
@@ -90,9 +92,11 @@ export default class Login extends React.Component {
                     variant="outlined"
                     value={password}
                     onChange={this.ChangePassword}/>
-                <div className="create-account">
-                    create account
-                </div>
+                    <Link to="/register">
+                        <div className="create-account">
+                            Create account
+                        </div>
+                    </Link>
                 <button 
                 className="login"
                 onClick={this.onLogin}>

@@ -21,7 +21,7 @@ class Note extends React.Component{
                     Pinned
                 </span>
                 <div className="note-position">
-                {this.props.Reducer.Notes.filter((element) => {
+                    {this.props.Reducer.Notes.filter((element) => {
                         return element.isArchived === false && element.isDeleted === false && element.isPined === true;
                     }).reverse().map(this.note)}
                 </div>
@@ -36,9 +36,6 @@ class Note extends React.Component{
                     }).reverse().map(this.note)}
                 </div>
             </div>
-            {/* <button onClick={this.props.getAllNotes}>
-                click
-            </button> */}
             </>
         )
     }

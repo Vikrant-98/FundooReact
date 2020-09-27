@@ -87,9 +87,9 @@ class CreateNote extends React.Component {
                     <div
                         className="take-note"
                         onClick={this.handleNoteOpen}>
-                        <span>
+                        <div style={{width:'110px'}}>
                             Take a note...
-                 </span>
+                        </div>
                         <div className="take-note-icon">
                             <div className="take-icon">
                                 <CheckBoxOutlinedIcon />

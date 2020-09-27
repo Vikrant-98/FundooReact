@@ -19,7 +19,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import Hidden from '@material-ui/core/Hidden';
 import Popover from '../toolbar/poppover';
 import Note from '../note/notebox';
 import Trash from '../trash/trash';
@@ -203,6 +203,9 @@ function MiniDrawer(props) {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   
+  const [showResults, setShowResults] = React.useState(false)
+  const onClick = () =>{ setShowResults(true) ; console.log("click click") }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -223,11 +226,12 @@ function MiniDrawer(props) {
           <Typography className={classes.title} variant="h6" noWrap>
             Fundoo
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
+          <div className={classes.search} onClick={() =>{ setShowResults(true) ; console.log("click click") }} >
+            <div className={classes.searchIcon} >
               <SearchIcon />
             </div>
-            <div>
+
+            { showResults ? <div>
             <Link to="/dashboard/search" className={classes.link}>
             <InputBase
               placeholder="Search…"
@@ -241,6 +245,26 @@ function MiniDrawer(props) {
             </Link>
             {/* <ClearIcon/> */}
             </div>
+             : 
+              // <Hidden xsDown>
+                <div>
+              <Link to="/dashboard/search" className={classes.link}>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+              onChange={(e)=>{props.changeName(e.target.value)}}
+            />
+            </Link>
+            {/* <ClearIcon/> */}
+            </div>
+              // </Hidden>
+             }
+
+            
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -254,7 +278,6 @@ function MiniDrawer(props) {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              {/* <AccountCircle /> */}
               <Avatar alt="Remy Sharp" 
                 src="https://lh3.googleusercontent.com/ogw/ADGmqu9fD7T16OvzpM2qMPbPNiicoPEFBxuDORVJpthC=s83-c-mo" />
             </IconButton>
@@ -279,7 +302,7 @@ function MiniDrawer(props) {
         <List
           onMouseEnter={handleDrawerOpen}
           onMouseLeave={handleDrawerClose}>
-          <Link to="/dashboard" className={classes.link}>
+          <Link to="/dashboard/notes" className={classes.link}>
           <ListItem button key={'Notes'}  className={classes.sideIcon}>
             <ListItemIcon><EmojiObjectsOutlinedIcon /></ListItemIcon>
             <ListItemText primary={'Notes'}/>
@@ -315,6 +338,10 @@ function MiniDrawer(props) {
           <Switch>
 									<ProtectedRoute
 									 exact path={"/dashboard"}
+										component={Note}
+									/>
+                  <ProtectedRoute
+									 exact path={"/dashboard/notes"}
 										component={Note}
 									/>
                   <ProtectedRoute

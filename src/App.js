@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/register" component={Register}/>
         <ProtectedRoute path={'/dashboard'} component={Dashboard} />
           <BrowserRouter>
+            <ProtectedRoute	path={"/dashboard/notes"} component={Dashboard}/>
             <ProtectedRoute	path={"/dashboard/trash"} component={Trash}/>
             <ProtectedRoute	path={"/dashboard/archive"} component={Archive}/>
             <ProtectedRoute	path={"/dashboard/search"} component={Search}/>
