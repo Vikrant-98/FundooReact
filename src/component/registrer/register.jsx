@@ -44,11 +44,8 @@ export default class Login extends React.Component {
             firstName: e.target.value,
             flag:1
         })
-
-
         let nameValidation = /^[A-Z]{1}[a-z]{2}[a-z]*$/;
         let inputs = this.state.error;
-
         inputs.errorFirstName = nameValidation.test(e.target.value) === true ? "" : "Name Start with caps and atleast 3";
     }
     onChangeLastName = e => {
@@ -59,7 +56,6 @@ export default class Login extends React.Component {
 
         let nameValidation = /^[A-Z]{1}[a-z]{2}[a-z]*$/;
         let inputs = this.state.error;
-
         inputs.errorLastName = nameValidation.test(e.target.value) === true ? "" : "Name Start with caps and atleast 3";
     }
     onChangeEmail = e => {
@@ -67,10 +63,8 @@ export default class Login extends React.Component {
             email: e.target.value,
             flag:1
         })
-
         let emailValidation = /^([a-zA-Z0-9]*[.]*[a-zA-Z0-9]*@[a-zA-Z0-9]*.{1}[a-zA-Z0-9]*[.]*[a-zA-Z0-9]*)$/;
         let inputs = this.state.error;
-
         inputs.errorEmail = emailValidation.test(e.target.value) === true ? "" : "Enter Valid Email";
     }
     onChangePassword = e => {
@@ -78,10 +72,8 @@ export default class Login extends React.Component {
             password: e.target.value,
             flag:1
         })
-
         let passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/;
         let inputs = this.state.error;
-
         inputs.errorPassword = passwordValidation.test(e.target.value) === true ? "" :
             "Enter Valid password";
     }
@@ -90,10 +82,8 @@ export default class Login extends React.Component {
             confirmPassword: e.target.value,
             flag:1
         })
-
         let passwordValidation = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$/;
         let inputs = this.state.error;
-
         inputs.errorConfirmPassword = passwordValidation.test(e.target.value) && 
         (this.state.password === e.target.value) === true ? ""
             : "Enter Valid password or not match";
@@ -103,8 +93,6 @@ export default class Login extends React.Component {
 
     onSubmit = (event) =>{
         event.preventDefault();
-        console.log("password",this.state.password);
-        console.log("confirm-password",this.state.confirmPassword);
 
         if(this.state.flag === 1
             && this.state.error.errorConfirmPassword ==="" 

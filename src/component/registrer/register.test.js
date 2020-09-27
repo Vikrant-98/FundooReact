@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import Register from './register';
-import renderer from 'react-test-renderer'
+import renderer from 'react-test-renderer';
 
 it('First Name should be valid with on error',()=>{
         const instanceOf = renderer.create(<Register/>).getInstance();
